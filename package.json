@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A heraldic color system for modern applications",
+  "description": "A distinctive light and dark color theme for modern applications",
   "scripts": {
     "tokens": "node scripts/generate.mjs",
     "test": "node --test",
