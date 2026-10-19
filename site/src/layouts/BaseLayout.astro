@@ -1,0 +1,32 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import '../styles/global.css';
+import '../styles/site-chrome.css';
+const { title = 'Martlet Theme — Light & Dark', description = 'Martlet Light and Dark, a distinctive open-source color theme for websites, editors, terminals, and applications.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#154c9e" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/downloads/martlet.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="mast">
+    <a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="38" height="38" alt="" /> <span>Martlet <small>Theme</small></span></a>
+    <nav aria-label="Sections"><a href="/#preview">Explore</a><a href="/#palette">Colors</a><a href="/#downloads">Downloads</a><a href="/#story">Story</a><a class="gitlink" href="https://github.com/k3jph/martlettheme">GitHub ↗</a></nav>
+  </header>
+  <main id="main" tabindex="-1"><slot /></main>
+  <SiteFooter />
+  <CookieConsent />
+</body>
+</html>
