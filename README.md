@@ -4,7 +4,7 @@
 
 Martlet Light and Martlet Dark are original color themes inspired by the blue, silver, and gold of **James P. Howard, II’s personal heraldic identity and family tartan**, documented at [jameshoward.us](https://jameshoward.us/). They do not claim to represent heraldry in general. Their first application was [Prism 7](https://prism7.app/). This project develops Martlet as a standalone, reusable theme family, not as Prism 7's stylesheet.
 
-**Website:** [martlettheme.dev](https://martlettheme.dev/) (planned, not yet deployed).  
+**Website:** [martlettheme.dev](https://martlettheme.dev/) .  
 **Version:** 1.0.0.
 
 ## What is included?
@@ -18,9 +18,13 @@ Martlet Light and Martlet Dark are original color themes inspired by the blue, s
 
 The first 20 UI roles match the original Prism 7 implementation for compatibility. **They are not frozen**: improved accessible colors can be introduced in future revisions with documented changes.
 
+## Zsh prompt
+
+Light and Dark `.zsh-theme` downloads are available on the website and in `ports/zsh/`. They work with plain Zsh or Oh My Zsh; see [installation and behavior](docs/ports.md#zsh-prompt-themes).
+
 ## Development
 
-Requires Node.js 20.19+ and npm.
+Development requires Node.js 20.19+, npm, and Zsh 5.9+ for the prompt tests.
 
 ```sh
 npm install
