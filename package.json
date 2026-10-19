@@ -6,7 +6,7 @@
   "description": "A distinctive light and dark color theme for modern applications",
   "scripts": {
     "tokens": "node scripts/generate.mjs",
-    "test": "node --test",
+    "test": "node --test tests/*.test.mjs",
     "dev": "npm run tokens && astro dev --root site",
     "build": "npm run tokens && astro build --root site",
     "preview": "astro preview --root site",

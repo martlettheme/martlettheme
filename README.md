@@ -56,3 +56,11 @@ See [docs/architecture.md](docs/architecture.md) for the token schema and projec
 ## Provenance and licensing
 
 Original source colors from the [James Howard & Family tartan](https://jameshoward.us/2025/05/26/a-new-tartan/); application role choices adapted from Prism 7's `src/core/appearance.js` on `work/first-platform`. The code and token definitions in this repository are MIT licensed. The license does not claim to grant independent rights to any heraldic badge, arms, or third-party artwork.
+
+## Application packages
+
+The public distribution repositories are [martlettheme/npm](https://github.com/martlettheme/npm), [martlettheme/vim](https://github.com/martlettheme/vim), [martlettheme/emacs](https://github.com/martlettheme/emacs), [martlettheme/chrome](https://github.com/martlettheme/chrome), and [martlettheme/firefox](https://github.com/martlettheme/firefox). Each includes a canonical color snapshot, a dependency-free build, verification, and installation instructions. Both Light and Dark are included. The website Downloads section serves the archives.
+
+The npm package is named `@martlettheme/theme`; it is prepared but not yet published to the registry. Chrome Web Store and Mozilla Add-ons publication are also pending, and Firefox archives are unsigned. ChatGPT/Codex desktop presets under `ports/chatgpt/` provide manual Appearance settings; native import serialization awaits an exported app theme.
+
+Run `npm run build` to generate all formats, including standalone distribution directories under `artifacts/repositories/`. See [distribution maintenance](docs/distributions.md).

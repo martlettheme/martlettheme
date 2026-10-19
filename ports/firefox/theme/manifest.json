@@ -1,0 +1,106 @@
+{
+  "manifest_version": 2,
+  "name": "Martlet Light & Dark",
+  "version": "1.0.0",
+  "description": "Martlet browser colors that follow Firefox's light or dark appearance.",
+  "homepage_url": "https://martlettheme.dev/",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "martlet-theme@martlettheme.dev",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "theme": {
+    "colors": {
+      "frame": "#E2EBF7",
+      "frame_inactive": "#F1F5FB",
+      "tab_background_text": "#455B76",
+      "tab_text": "#122744",
+      "tab_selected": "#FFFFFF",
+      "tab_line": "#154C9E",
+      "tab_loading": "#154C9E",
+      "toolbar": "#FFFFFF",
+      "toolbar_text": "#122744",
+      "toolbar_bottom_separator": "#CBCFD6",
+      "toolbar_top_separator": "#CBCFD6",
+      "toolbar_vertical_separator": "#CBCFD6",
+      "toolbar_field": "#F1F5FB",
+      "toolbar_field_text": "#122744",
+      "toolbar_field_border": "#808790",
+      "toolbar_field_focus": "#FFFFFF",
+      "toolbar_field_text_focus": "#122744",
+      "toolbar_field_border_focus": "#154C9E",
+      "toolbar_field_highlight": "#D7E1F0",
+      "toolbar_field_highlight_text": "#122744",
+      "icons": "#154C9E",
+      "icons_attention": "#805000",
+      "button_background_hover": "#E7F0FA",
+      "button_background_active": "#D7E6F7",
+      "popup": "#F1F5FB",
+      "popup_text": "#122744",
+      "popup_border": "#CBCFD6",
+      "popup_highlight": "#D7E1F0",
+      "popup_highlight_text": "#122744",
+      "sidebar": "#F1F5FB",
+      "sidebar_text": "#122744",
+      "sidebar_border": "#CBCFD6",
+      "sidebar_highlight": "#D7E1F0",
+      "sidebar_highlight_text": "#122744",
+      "ntp_background": "#FFFFFF",
+      "ntp_text": "#122744"
+    },
+    "properties": {
+      "color_scheme": "light",
+      "content_color_scheme": "light"
+    }
+  },
+  "dark_theme": {
+    "colors": {
+      "frame": "#143153",
+      "frame_inactive": "#0B1B32",
+      "tab_background_text": "#C6D5EB",
+      "tab_text": "#F3F7FF",
+      "tab_selected": "#040B16",
+      "tab_line": "#FEE46E",
+      "tab_loading": "#FEE46E",
+      "toolbar": "#040B16",
+      "toolbar_text": "#F3F7FF",
+      "toolbar_bottom_separator": "#393F49",
+      "toolbar_top_separator": "#393F49",
+      "toolbar_vertical_separator": "#393F49",
+      "toolbar_field": "#0B1B32",
+      "toolbar_field_text": "#F3F7FF",
+      "toolbar_field_border": "#757A82",
+      "toolbar_field_focus": "#040B16",
+      "toolbar_field_text_focus": "#F3F7FF",
+      "toolbar_field_border_focus": "#FEE46E",
+      "toolbar_field_highlight": "#283339",
+      "toolbar_field_highlight_text": "#F3F7FF",
+      "icons": "#FEE46E",
+      "icons_attention": "#E6C384",
+      "button_background_hover": "#143153",
+      "button_background_active": "#21466D",
+      "popup": "#0B1B32",
+      "popup_text": "#F3F7FF",
+      "popup_border": "#393F49",
+      "popup_highlight": "#283339",
+      "popup_highlight_text": "#F3F7FF",
+      "sidebar": "#0B1B32",
+      "sidebar_text": "#F3F7FF",
+      "sidebar_border": "#393F49",
+      "sidebar_highlight": "#283339",
+      "sidebar_highlight_text": "#F3F7FF",
+      "ntp_background": "#040B16",
+      "ntp_text": "#F3F7FF"
+    },
+    "properties": {
+      "color_scheme": "dark",
+      "content_color_scheme": "dark"
+    }
+  }
+}

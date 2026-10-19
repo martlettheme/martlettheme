@@ -1,0 +1,11 @@
+{
+  "name": "Martlet Light",
+  "version": "1.0.0",
+  "format": "appearance-settings",
+  "appearance": "light",
+  "background": "#FFFFFF",
+  "foreground": "#122744",
+  "accent": "#154C9E",
+  "contrast": 45,
+  "instructions": "Enter these values in Settings > Appearance in ChatGPT/Codex desktop. Native import serialization is pending verification against an app export. Preset-only web/mobile clients may not expose custom colors."
+}

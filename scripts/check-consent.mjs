@@ -152,7 +152,7 @@ try {
     await page.setViewportSize({width:390,height:844});
     await page.goto(base+'/');
     await page.screenshot({path:'artifacts/qa/mobile.png'});
-    for(const file of ['favicon.svg','favicon.ico','apple-touch-icon.png','site.webmanifest','downloads/martlet-light.terminal','downloads/martlet-dark.terminal','downloads/martlet-light.zsh-theme','downloads/martlet-dark.zsh-theme']) assert.equal((await page.request.get(base+'/'+file)).ok(),true);
+    for(const file of ['favicon.svg','favicon.ico','apple-touch-icon.png','site.webmanifest','downloads/martlet-light.terminal','downloads/martlet-dark.terminal','downloads/martlet-light.zsh-theme','downloads/martlet-dark.zsh-theme', 'downloads/martlet-vim.zip', 'downloads/martlet-emacs.zip', 'downloads/martlet-light-chrome.zip', 'downloads/martlet-dark-chrome.zip', 'downloads/martlet-firefox.zip', 'downloads/martlet-light-chatgpt.json', 'downloads/martlet-dark-chatgpt.json', 'downloads/martlettheme-theme-1.0.0.tgz']) assert.equal((await page.request.get(base+'/'+file)).ok(),true);
     await page.goto(base+'/privacy-and-cookie-notice/');
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Privacy notice overflows');
   });
@@ -207,6 +207,7 @@ try {
       await page.locator('.css-instructions').evaluate(e=>{e.open=true;});
       await page.locator('.terminal-download details').evaluate(e=>{e.open=true;});
       await page.locator('.zsh-download details').evaluate(e=>{e.open=true;});
+      await page.locator('.app-ports details').evaluateAll(els=>els.forEach(e=>{e.open=true;}));
       await assertFits(`${width}px expanded download instructions`);
     }
     await page.setViewportSize({width:307,height:844});

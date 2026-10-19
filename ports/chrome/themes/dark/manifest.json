@@ -1,0 +1,94 @@
+{
+  "manifest_version": 3,
+  "name": "Martlet Dark",
+  "version": "1.0.0",
+  "description": "Martlet Dark: a quiet color theme for your browser.",
+  "homepage_url": "https://martlettheme.dev/",
+  "theme": {
+    "colors": {
+      "frame": [
+        20,
+        49,
+        83
+      ],
+      "frame_inactive": [
+        11,
+        27,
+        50
+      ],
+      "toolbar": [
+        4,
+        11,
+        22
+      ],
+      "toolbar_text": [
+        243,
+        247,
+        255
+      ],
+      "toolbar_button_icon": [
+        254,
+        228,
+        110
+      ],
+      "tab_text": [
+        243,
+        247,
+        255
+      ],
+      "tab_background_text": [
+        198,
+        213,
+        235
+      ],
+      "background_tab": [
+        20,
+        49,
+        83
+      ],
+      "bookmark_text": [
+        243,
+        247,
+        255
+      ],
+      "button_background": [
+        11,
+        27,
+        50
+      ],
+      "ntp_background": [
+        4,
+        11,
+        22
+      ],
+      "ntp_text": [
+        243,
+        247,
+        255
+      ],
+      "ntp_link": [
+        254,
+        228,
+        110
+      ],
+      "ntp_header": [
+        57,
+        63,
+        73
+      ],
+      "omnibox_background": [
+        11,
+        27,
+        50
+      ],
+      "omnibox_text": [
+        243,
+        247,
+        255
+      ]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    }
+  }
+}

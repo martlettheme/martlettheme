@@ -4,6 +4,7 @@ import { contrastRatio } from '../../../src/contrast.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { version } from '../../../package.json';
 import ThemeSpecimen from '../components/ThemeSpecimen.astro';
+import AppDownloads from '../components/AppDownloads.astro';
 const entries=Object.values(themes);
 const origins=[['Silver',heritage.silver],['Light blue',heritage.blueLight],['Blue',heritage.blue],['Dark blue',heritage.blueDark],['Gold',heritage.gold],['Dark gold',heritage.goldDark],['Light yellow',heritage.yellowLight]];
 const pairs=Object.entries(themes.light.tokens);
@@ -55,6 +56,7 @@ const downloads=[['CSS variables','Scoped Light and Dark themes','martlet.css'],
       <article class="zsh-download" aria-labelledby="zsh-title"><div><h3 id="zsh-title">A prompt to match.</h3><p>A two-line prompt in blue or gold, with your user, host, directory, and Git state. Both variants show command failures and work with plain Zsh or Oh My Zsh. No special font required.</p><pre aria-label="Illustrative Martlet Zsh prompt"><code>james@mac ~/projects [martlet +1 ~2 ?1]
 &gt; </code></pre></div><div class="zsh-files"><a href="/downloads/martlet-light.zsh-theme" download>Martlet Light <code>↓ .zsh-theme</code></a><a href="/downloads/martlet-dark.zsh-theme" download>Martlet Dark <code>↓ .zsh-theme</code></a></div><details><summary>Install the Zsh prompt</summary><p>Download a variant that matches your terminal background. Move it into <code>~/.config/zsh/themes/</code>:</p><pre><code>mkdir -p ~/.config/zsh/themes
 cp ~/Downloads/martlet-dark.zsh-theme ~/.config/zsh/themes/</code></pre><p>Add this line at the end of <code>~/.zshrc</code>, after any shell framework or prompt setup, then open a new shell:</p><pre><code>source "$HOME/.config/zsh/themes/martlet-dark.zsh-theme"</code></pre><p>For Light, replace <code>martlet-dark</code> with <code>martlet-light</code>. For Oh My Zsh, you can instead put the file in its custom themes directory and set <code>ZSH_THEME="martlet-dark"</code> before loading Oh My Zsh.</p><p>Git markers: <code>+N</code> staged, <code>~N</code> unstaged, <code>?N</code> untracked entries, <code>xN</code> conflicts. A failed command shows its exit code. Set <code>MARTLET_GIT=0</code> before sourcing to omit Git inspection. Use Zsh 5.9 or newer. Truecolor terminals use the exact role colors; other terminals use ANSI palette slots, supplied by the matching Terminal.app profile. The prompt sets no terminal background; use the matching Terminal.app profile for that.</p></details></article>
+      <AppDownloads />
       <details class="css-instructions"><summary>Use Martlet on a website</summary><p>Load the CSS, then set <code>data-martlet</code> to <code>light</code> or <code>dark</code> on the element you want to theme.</p><pre><code>&lt;link rel="stylesheet" href="martlet.css"&gt;
 &lt;main data-martlet="dark"&gt;
   &lt;article class="panel"&gt;Hello, Martlet.&lt;/article&gt;
