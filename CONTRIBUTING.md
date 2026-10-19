@@ -1,6 +1,6 @@
 # Contributing
 
-Martlet is under active development. Contributions can propose adjustments to either appearance, but should preserve the recognizable blue/silver/gold heraldic identity.
+Martlet is under active development. Contributions can propose adjustments to either appearance, but should preserve the recognizable blue, silver, and gold drawn from James P. Howard, II’s personal heraldic identity.
 
 1. Modify `src/palettes.mjs` (not the generated CSS).
 2. Run `npm run tokens && npm test && npm run build`.
