@@ -6,3 +6,16 @@
 @media(max-width:800px){.footer-grid{grid-template-columns:1fr;gap:28px}.footer-links{padding-top:0;gap:8px}}
 @media(max-width:550px){.footer-row{grid-template-columns:70px minmax(0,1fr);gap:14px}.footer-row-links{gap:6px 18px}.footer-brand-copy strong{font-size:20px}.cookie-banner{padding:18px}.cookie-actions{gap:10px}.cookie-actions button{flex:1 1 auto}.privacy-page{padding:44px 22px 60px}.privacy-page th,.privacy-page td{padding:8px}.cookie-dialog{padding:22px}}
 @media print{.cookie-banner,.cookie-dialog,#privacy-controls,.skip-link{display:none!important}}
+
+.footer-identity,.footer-brand,.footer-brand-copy{min-inline-size:0}
+.footer-brand-copy strong{overflow-wrap:anywhere}
+@media(max-width:400px){
+  .footer-brand{gap:12px}
+  .footer-brand img{width:44px;height:44px}
+  .footer-brand-copy strong{font-size:18px}
+  .footer-brand-copy>span{font-size:12px}
+  .footer-row{grid-template-columns:62px minmax(0,1fr);column-gap:12px}
+  .privacy-page{padding-inline:16px}
+  .privacy-page table{table-layout:fixed}
+  .privacy-page th,.privacy-page td{overflow-wrap:anywhere}
+}
