@@ -1,0 +1,20 @@
+{
+  "name": "martlet-theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A heraldic color system for modern applications",
+  "scripts": {
+    "tokens": "node scripts/generate.mjs",
+    "test": "node --test",
+    "dev": "npm run tokens && astro dev --root site",
+    "build": "npm run tokens && astro build --root site",
+    "preview": "astro preview --root site"
+  },
+  "devDependencies": {
+    "astro": "^5.14.0"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  }
+}
