@@ -7,7 +7,7 @@ const roles=['bg','panel','panel2','text','muted','accent','accent2','on-accent'
 for(const [mode,theme] of Object.entries(themes)){
  test(mode+' has identical role names across modes',()=>assert.deepEqual(Object.keys(theme.tokens),Object.keys(themes[mode==='light'?'dark':'light'].tokens)));
  test(mode+' has 20 original Prism 7 UI roles',()=>roles.forEach(k=>assert.ok(theme.tokens[k],k)));
- test(mode+' has valid token values',()=>Object.entries(theme.tokens).forEach(([k,v])=>assert.match(v,/^(#[\\da-f]{6}|#[\\da-f]{8}|0 10px 40px #[\\da-f]{8})$/i,k)));
+ test(mode+' has valid token values',()=>Object.entries(theme.tokens).forEach(([k,v])=>assert.ok(/^#[0-9A-F]{6}(?:[0-9A-F]{2})?$/i.test(v)||/^0 10px 40px #[0-9A-F]{8}$/i.test(v),k+' '+v)));
  test(mode+' tested pairs meet 4.5:1 AA contrast',()=>{
   const t=theme.tokens;
   for(const [a,b] of [['text','bg'],['text','panel'],['text','panel2'],['muted','bg'],['muted','panel'],['muted','panel2'],['accent','bg'],['on-accent','accent'],['link','bg'],['link-visited','bg'],['input-text','input-bg'],['code-text','code-bg'],['button-secondary-text','button-secondary-bg'],['success-text','success-bg'],['warning-text','warning-bg'],['danger-text','danger-bg'],['info-text','info-bg']]) assert.ok(contrastRatio(t[a],t[b])>=4.5,a+'/'+b+' ratio '+contrastRatio(t[a],t[b]).toFixed(2));
