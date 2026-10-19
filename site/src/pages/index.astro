@@ -1,28 +1,12 @@
 ---
 import {themes,heritage} from '../../../src/palettes.mjs';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 const entries=Object.values(themes);
 const origins=[['Silver',heritage.silver],['Light blue',heritage.blueLight],['Heraldic blue',heritage.blue],['Dark blue',heritage.blueDark],['Gold',heritage.gold],['Dark gold',heritage.goldDark],['Light yellow',heritage.yellowLight]];
 const keys=['bg','panel','panel2','text','muted','accent','link','selection','success','danger','warning','syntax-keyword','syntax-string','chart-1','chart-2','chart-3'];
 const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.css','martlet-light-vscode.json','martlet-dark-vscode.json','martlet-light-terminal.json','martlet-dark-terminal.json'];
 ---
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="theme-color" content="#154c9e" />
-<meta name="description" content="Martlet Light and Dark, a distinctive open-source color theme for websites, editors, terminals, and applications." />
-<title>Martlet Theme — Light &amp; Dark</title>
-<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-<link rel="manifest" href="/site.webmanifest" />
-<link rel="stylesheet" href="/downloads/martlet.css" />
-</head>
-<body>
-<header class="mast"><a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="38" height="38" alt="" /> <span>Martlet <small>Theme</small></span></a>
-<nav aria-label="Sections"><a href="#palette">Palette</a><a href="#preview">Preview</a><a href="#tokens">Tokens</a><a href="#downloads">Downloads</a><a class="gitlink" href="https://github.com/k3jph/martlettheme">GitHub ↗</a></nav></header>
-<main>
+<BaseLayout>
 <section class="hero">
 <div class="hero-main"><p class="eyebrow">AN ORIGINAL COLOR THEME</p><h1>Color with a story.<br /><em>Built for what’s next.</em></h1>
 <p class="hero-lede">Inspired by the blue, silver, and gold of James P. Howard, II’s personal heraldic identity, Martlet brings a distinctive palette to websites, applications, and readable code.</p>
@@ -65,8 +49,7 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 &#125;</code></pre></div></section>
 <section id="downloads" class="section wrap"><header class="section-header"><div><p class="eyebrow">05 / DOWNLOAD</p><h2>Pick up the palette.</h2></div><p>All files are generated from one canonical source. These are development artifacts, not final polished application extensions.</p></header><div class="download-grid">{downloads.map(name=><a href={'/downloads/'+name} download><span><strong>{name.startsWith('martlet-light')?'Martlet Light':name.startsWith('martlet-dark')?'Martlet Dark':'Complete Martlet'} </strong><small>{name}</small></span><span class="arrow">↓</span></a>)}</div>
 <p class="fineprint">First implemented in <a href="https://prism7.app/">Prism 7</a>. Source repository: <a href="https://github.com/k3jph/martlettheme">k3jph/martlettheme</a>.</p></section>
-</main>
-<footer><div class="wrap foot"><strong>Martlet Theme</strong><span>By James P. Howard, II · <a href="https://jameshoward.us/">jameshoward.us</a></span><span>MIT licensed code · Preview</span></div></footer>
+
 <script>
 const preview=document.getElementById('demo');
 const buttons=[...document.querySelectorAll('button[data-mode]')];
@@ -75,4 +58,4 @@ for(const b of buttons) b.addEventListener('click',()=>{
   buttons.forEach(other=>other.setAttribute('aria-pressed',String(other===b)));
 });
 </script>
-</body></html>
+</BaseLayout>

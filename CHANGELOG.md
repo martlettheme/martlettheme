@@ -2,6 +2,10 @@
 
 ## 0.1.0-dev (unreleased)
 
+- Add consent-gated Google Analytics using the owner’s shared measurement ID, a privacy notice, and the standard James Howard footer.
+- Adapt the DefenseOR consent controls, including rejection, withdrawal, consent expiry, and Global Privacy Control.
+- Serve fonts and the JHCU identity badge locally.
+
 - Replace the placeholder M with the original martlet artwork, recolored gold on Martlet blue, across the site and browser icons.
 - Add matching Apple touch and Android icons, an ICO fallback, and a web manifest.
 

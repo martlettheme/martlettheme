@@ -30,6 +30,10 @@ npm run dev
 npm run build
 ```
 
+The site uses the owner's shared Google Analytics measurement ID `G-FSDET4HG4L`. The tag is blocked until visitors accept optional analytics. `PUBLIC_GA_ID` can override that default; an explicitly blank value disables it. Cookie Settings in the footer supports withdrawal, and Global Privacy Control keeps analytics off. See [the website privacy implementation](docs/privacy.md).
+
+For browser verification, run `npx playwright install chromium`, then `npm run build && npm run test:browser`. These checks intercept the Google tag and never submit real Analytics data.
+
 Generated deliverables are placed in `artifacts/` and `site/public/downloads/`. Those directories are derived from `src/palettes.mjs` and should not be edited manually.
 
 ## Use on a website
