@@ -1,8 +1,8 @@
 # Martlet Theme
 
-**A heraldic color system for modern applications.**
+**Color with a story. Built for what’s next.**
 
-Martlet Light and Martlet Dark draw on the blue, silver and gold heraldic identity associated with [jameshoward.us](https://jameshoward.us/). Their first application was [Prism 7](https://prism7.app/). This project develops Martlet as a standalone, reusable theme family, not as Prism 7's stylesheet.
+Martlet Light and Martlet Dark are original color themes inspired by the blue, silver, and gold of **James P. Howard, II’s personal heraldic identity and family tartan**, documented at [jameshoward.us](https://jameshoward.us/). They do not claim to represent heraldry in general. Their first application was [Prism 7](https://prism7.app/). This project develops Martlet as a standalone, reusable theme family, not as Prism 7's stylesheet.
 
 **Website:** [martlettheme.dev](https://martlettheme.dev/) (planned, not yet deployed).  
 **Status:** development preview, not a published or audited theme release.
