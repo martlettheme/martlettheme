@@ -10,14 +10,17 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 <html lang="en">
 <head>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="theme-color" content="#040b16" />
+<meta name="theme-color" content="#154c9e" />
 <meta name="description" content="Martlet Light and Dark, a distinctive open-source color theme for websites, editors, terminals, and applications." />
 <title>Martlet Theme — Light &amp; Dark</title>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link rel="manifest" href="/site.webmanifest" />
 <link rel="stylesheet" href="/downloads/martlet.css" />
 </head>
 <body>
-<header class="mast"><a class="brand" href="/"><b>M</b> <span>Martlet <small>Theme</small></span></a>
+<header class="mast"><a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="38" height="38" alt="" /> <span>Martlet <small>Theme</small></span></a>
 <nav aria-label="Sections"><a href="#palette">Palette</a><a href="#preview">Preview</a><a href="#tokens">Tokens</a><a href="#downloads">Downloads</a><a class="gitlink" href="https://github.com/k3jph/martlettheme">GitHub ↗</a></nav></header>
 <main>
 <section class="hero">
@@ -25,7 +28,7 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 <p class="hero-lede">Inspired by the blue, silver, and gold of James P. Howard, II’s personal heraldic identity, Martlet brings a distinctive palette to websites, applications, and readable code.</p>
 <div class="actions"><a class="primary" href="#preview">Explore Martlet ↘</a><a class="secondary" href="#downloads">Get the colors</a></div>
 <p class="quiet">Open source · Light &amp; dark · Development preview</p></div>
-<div class="hero-art" aria-hidden="true"><div class="heraldic-m">M</div><div class="art-label">AZURE · ARGENT · OR</div></div>
+<div class="hero-art" aria-hidden="true"><img class="hero-mark" src="/martlet-mark.svg" width="265" height="265" alt="" /><div class="art-label">AZURE · ARGENT · OR</div></div>
 </section>
 <section id="palette" class="section wrap"><header class="section-header"><div><p class="eyebrow">01 / ORIGINS</p><h2>Seven colors. One identity.</h2></div><p>Martlet’s original colors come from James P. Howard, II’s arms and the documented James Howard &amp; Family tartan. The theme adds purpose-built navy surfaces, muted typography, and application-specific colors.</p></header>
 <div class="heritage">{origins.map(([name,hex])=><article class="swatch"><div class="chip" style={'background:'+hex}></div><strong>{name}</strong><code>{hex}</code></article>)}</div>
@@ -34,7 +37,7 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 <section id="preview" class="section preview-section"><div class="wrap"><header class="section-header"><div><p class="eyebrow">02 / LIVE PREVIEW</p><h2>Two sides of Martlet.</h2></div><p>Light emphasizes crisp white and heraldic blue. Dark pairs midnight navy with gold. Both share the same named color roles.</p></header>
 <div class="segmented" role="group" aria-label="Theme preview"><button type="button" data-mode="light" aria-pressed="false">☀ Martlet Light</button><button type="button" data-mode="dark" aria-pressed="true">☾ Martlet Dark</button></div>
 <div class="application" data-martlet="dark" id="demo">
-<div class="app-bar"><span class="app-name"><b>M</b> An imagined application</span><span class="app-links">Overview &nbsp; Projects &nbsp; Settings</span><span class="avatar">JH</span></div>
+<div class="app-bar"><span class="app-name"><img class="app-mark" src="/martlet-mark.svg" width="30" height="30" alt="" /> An imagined application</span><span class="app-links">Overview &nbsp; Projects &nbsp; Settings</span><span class="avatar">JH</span></div>
 <div class="app-body"><aside class="sidebar"><small>WORKSPACE</small><strong>▣ &nbsp; Dashboard</strong><span>◫ &nbsp; Projects</span><span>◷ &nbsp; Activity</span><span>⚙ &nbsp; Preferences</span></aside><div class="app-content"><div class="app-heading"><div><small>YOUR WORKSPACE</small><h3>Welcome back.</h3><p>Here's what your projects are doing.</p></div><button type="button">+ New project</button></div>
 <div class="stats"><article><small>Active projects</small><strong>12</strong><span>↑ 2 this week</span></article><article><small>Completed tasks</small><strong>248</strong><span>↑ 18 this week</span></article><article><small>Outstanding reviews</small><strong>03</strong><span>Needs attention</span></article></div>
 <div class="code-example"><header>theme.mjs <span>● ● ●</span></header><pre><code><i>const</i> theme = &#123;
