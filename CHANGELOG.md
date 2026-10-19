@@ -2,6 +2,11 @@
 
 ## 0.1.0-dev (unreleased)
 
+- Rebuild the homepage as an interactive color specimen book with simultaneous Light/Dark previews, Interface/Code/Terminal views, searchable tokens, copy controls, and a live contrast inspector.
+- Add generated native Terminal.app profiles and macOS import instructions; validate all 21 keyed NSColor archives in each profile.
+- Improve Light ANSI foregrounds for readability on white, including the white slots, green, yellow, and cyan. The 20 original UI roles remain unchanged.
+- Extend browser checks to the specimen controls and clipboard fallback.
+
 - Add consent-gated Google Analytics using the owner’s shared measurement ID, a privacy notice, and the standard James Howard footer.
 - Adapt the DefenseOR consent controls, including rejection, withdrawal, consent expiry, and Global Privacy Control.
 - Serve fonts and the JHCU identity badge locally.

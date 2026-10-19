@@ -12,15 +12,15 @@ Martlet Light and Martlet Dark are original color themes inspired by the blue, s
 - Seven documented heritage colors, two canonical light/dark palettes, and portable semantic UI tokens.
 - Expanded surface, text, interaction, status, charts, and syntax colors. Unlike the original 20-role application theme, these can style an entire product.
 - Generated namespaced CSS and JSON.
-- Starter ANSI 16-color terminal palettes and VS Code color theme JSON.
-- An interactive Astro documentation website, produced from the same canonical palette definitions.
+- Native macOS Terminal.app profiles, generic ANSI 16-color palettes, and starter VS Code color theme JSON.
+- An interactive color specimen website with side-by-side Light/Dark interface, code, and terminal previews, copyable swatches, searchable tokens, and a contrast inspector.
 - Contrast assertions for representative text/background pairs.
 
 The first 20 UI roles match the original Prism 7 implementation for compatibility. **They are not frozen**: improved accessible colors can be introduced in future revisions with documented changes.
 
 ## Development
 
-Requires Node.js 20.3+ and npm.
+Requires Node.js 20.19+ and npm.
 
 ```sh
 npm install
@@ -47,7 +47,7 @@ Then `background: var(--martlet-bg)` and `color: var(--martlet-text)`. The theme
 
 ## Roadmap
 
-See [docs/architecture.md](docs/architecture.md) for the token schema and project structure. Terminal and VS Code outputs are **starter ports**, not yet distributable editor extensions. Further integration targets will be added after their application-specific behavior and contrast are reviewed.
+See [docs/architecture.md](docs/architecture.md) for the token schema and project structure. Native Terminal.app profiles and import instructions are in [docs/ports.md](docs/ports.md). Their plist structure and colors are validated; macOS import/rendering verification is pending. VS Code and generic terminal JSON remain starter color definitions. Further integration targets will be added after their application-specific behavior and contrast are reviewed.
 
 ## Provenance and licensing
 

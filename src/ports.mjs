@@ -1,7 +1,7 @@
 /** Starter ports: semantic editors and ANSI terminal colors. */
 export function terminal(theme) {
  const t=theme.tokens, dark=theme.mode==='dark';
- const a=dark ? ['#122744','#FFA7AB','#9DC3AE','#FEE46E','#83AFF5','#C9AFFA','#7DCECF','#CED8E8','#455B76','#FFD0D1','#B4E2C7','#FFF1A1','#B9D2FF','#E4CAFF','#B4E8E8','#FFFFFF'] : ['#122744','#A02E42','#286B40','#805000','#154C9E','#68409B','#007582','#F1F5FB','#455B76','#BB4158','#348656','#AC8800','#1959B9','#865CBD','#048A99','#FFFFFF'];
+ const a=dark ? ['#122744','#FFA7AB','#9DC3AE','#FEE46E','#83AFF5','#C9AFFA','#7DCECF','#CED8E8','#455B76','#FFD0D1','#B4E2C7','#FFF1A1','#B9D2FF','#E4CAFF','#B4E8E8','#FFFFFF'] : ['#122744','#A02E42','#286B40','#805000','#154C9E','#68409B','#007582','#455B76','#61738B','#BB4158','#286B40','#925C00','#1959B9','#865CBD','#007582','#0D2038'];
  return {name:theme.name,background:t.bg,foreground:t.text,cursor:t.accent,selection:t.selection,
  ansi:Object.fromEntries(['black','red','green','yellow','blue','magenta','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightMagenta','brightCyan','brightWhite'].map((key,i)=>[key,a[i]]))};
 }

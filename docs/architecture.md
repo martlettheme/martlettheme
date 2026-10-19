@@ -5,7 +5,7 @@ Martlet's heritage palette is distinct from its application palette.
 - **Heritage**: canonical historical/livery hues (blue, silver, gold). Their meaning and attribution should not be casually redefined.
 - **Semantic tokens**: colors by purpose, with matched names between modes. The source is `src/palettes.mjs`.
 - **Ports**: program-specific transformations of the semantic source: `src/ports.mjs`.
-- **Distribution**: CSS and JSON emitted by `npm run tokens`, and a reference website built with Astro.
+- **Distribution**: CSS, JSON, and native Terminal.app profiles emitted by `npm run tokens`, and a reference website built with Astro.
 
 Never write generated files by hand. If a new role is added in one mode, add it in both modes and document its intended use. Use namespaced CSS names `--martlet-*` to avoid collisions with host applications.
 
