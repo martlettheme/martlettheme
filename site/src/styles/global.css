@@ -30,3 +30,9 @@ main,.mast nav,.brand,.brand>span,.specimen-stage,.note-content,.contrast-inspec
   .mode-switch{max-inline-size:100%}
   .mode-switch button{min-inline-size:0;padding-inline:10px}
 }
+
+@media(max-width:400px){
+  h1{overflow-wrap:anywhere}
+  .view-switch,.mode-switch{flex-wrap:wrap}
+  .view-switch button{flex:1 1 auto}
+}
