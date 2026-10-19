@@ -1,6 +1,6 @@
 {
   "name": "martlet-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "A distinctive light and dark color theme for modern applications",

@@ -11,7 +11,7 @@ Never write generated files by hand. If a new role is added in one mode, add it 
 
 ## Compatibility
 
-The original Prism 7 variables are preserved in v0.1 as recognizable tokens. Future changes to these values are allowed when justified by accessibility, consistency, or design quality; they must be noted in the changelog and tested. Do not export Prism 7's selectors (`body[data-theme]` or `.publication-page`), as Martlet must not assume any host's DOM structure.
+The original Prism 7 variables are preserved in v1.0 as recognizable tokens. Future changes to these values are allowed when justified by accessibility, consistency, or design quality; they must be noted in the changelog and tested. Do not export Prism 7's selectors (`body[data-theme]` or `.publication-page`), as Martlet must not assume any host's DOM structure.
 
 ## Contrast and use
 

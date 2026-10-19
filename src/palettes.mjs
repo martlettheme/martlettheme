@@ -1,9 +1,9 @@
 /**
- * Martlet Theme, canonical v0.1 development data.
+ * Martlet Theme, canonical theme data.
  * The seven heritage colors are historical design inputs.
  * Prism 7's original twenty semantic tokens form the compatibility baseline;
  * future major releases may revise them for accessibility or consistency.
- * Additional roles are original provisional expansions.
+ * Additional roles cover interfaces, syntax, and data visualization.
  */
 export const heritage = Object.freeze({
   "silver": "#FFFFFF",

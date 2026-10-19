@@ -2,6 +2,7 @@
 import { themes,heritage } from '../../../src/palettes.mjs';
 import { contrastRatio } from '../../../src/contrast.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { version } from '../../../package.json';
 import ThemeSpecimen from '../components/ThemeSpecimen.astro';
 const entries=Object.values(themes);
 const origins=[['Silver',heritage.silver],['Light blue',heritage.blueLight],['Blue',heritage.blue],['Dark blue',heritage.blueDark],['Gold',heritage.gold],['Dark gold',heritage.goldDark],['Light yellow',heritage.yellowLight]];
@@ -14,7 +15,7 @@ const downloads=[['CSS variables','Scoped Light and Dark themes','martlet.css'],
   <div class="specimen-book">
     <header class="book-intro">
       <div class="book-title"><h1>Martlet<span>.</span></h1><p>Color with a story.</p></div>
-      <div class="book-description"><p>Blue and silver in the light. Navy and gold in the dark. A pair of color themes for interfaces, readable code, and the terminal you keep open all day.</p><div class="intro-links"><a href="#downloads">Get Martlet <span aria-hidden="true">↓</span></a><a href="#story">Where it began <span aria-hidden="true">↗</span></a><span>v0.1 · Development preview</span></div></div>
+      <div class="book-description"><p>Blue and silver in the light. Navy and gold in the dark. A pair of color themes for interfaces, readable code, and the terminal you keep open all day.</p><div class="intro-links"><a href="#downloads">Get Martlet <span aria-hidden="true">↓</span></a><a href="#story">Where it began <span aria-hidden="true">↗</span></a><span>v{version}</span></div></div>
     </header>
 
     <section id="preview" aria-label="Compare Martlet Light and Dark">
@@ -48,7 +49,7 @@ const downloads=[['CSS variables','Scoped Light and Dark themes','martlet.css'],
     <section id="downloads" class="get-martlet" aria-labelledby="download-title">
       <header class="workspace-heading"><div><h2 id="download-title">Take Martlet with you.</h2><p>Pick a format. The same source colors go with it.</p></div><a class="source-link" href="https://github.com/k3jph/martlettheme">Browse the source ↗</a></header>
       <div class="installation-grid">
-        <article class="terminal-download"><div class="terminal-symbol" aria-hidden="true">&gt;_</div><h3>Terminal.app</h3><p>Native profiles for the terminal included with macOS. Background, text, cursor, selection, and all sixteen ANSI colors.</p><div class="terminal-download-links"><a href="/downloads/martlet-light.terminal" download>Martlet Light <span>↓ .terminal</span></a><a href="/downloads/martlet-dark.terminal" download>Martlet Dark <span>↓ .terminal</span></a></div><details><summary>How to install</summary><ol><li>Download either profile.</li><li>Open Terminal and choose <strong>Terminal → Settings → Profiles</strong>.</li><li>Use the action menu beneath the profiles list to choose <strong>Import</strong>, then select the downloaded file. You can also drag the file into that list.</li><li>Select Martlet Light or Martlet Dark. Choose <strong>Default</strong> if you want it for new windows.</li></ol><p><a href="https://support.apple.com/guide/terminal/import-and-export-terminal-profiles-trml4299c696/mac">Apple’s profile import guide ↗</a></p><p>These profiles are a development preview. They have not yet been tested in Terminal.app on a Mac.</p></details></article>
+        <article class="terminal-download"><div class="terminal-symbol" aria-hidden="true">&gt;_</div><h3>Terminal.app</h3><p>Native profiles for the terminal included with macOS. Background, text, cursor, selection, and all sixteen ANSI colors.</p><div class="terminal-download-links"><a href="/downloads/martlet-light.terminal" download>Martlet Light <span>↓ .terminal</span></a><a href="/downloads/martlet-dark.terminal" download>Martlet Dark <span>↓ .terminal</span></a></div><details><summary>How to install</summary><ol><li>Download either profile.</li><li>Open Terminal and choose <strong>Terminal → Settings → Profiles</strong>.</li><li>Use the action menu beneath the profiles list to choose <strong>Import</strong>, then select the downloaded file. You can also drag the file into that list.</li><li>Select Martlet Light or Martlet Dark. Choose <strong>Default</strong> if you want it for new windows.</li></ol><p><a href="https://support.apple.com/guide/terminal/import-and-export-terminal-profiles-trml4299c696/mac">Apple’s profile import guide ↗</a></p><p>These profiles have not yet been tested in Terminal.app on a Mac.</p></details></article>
         <div class="download-list">{downloads.map(([title,description,file])=><a href={`/downloads/${file}`} download><span><strong>{title}</strong><small>{description}</small></span><code>{file.endsWith('.css')?'.css':'.json'} ↓</code></a>)}</div>
       </div>
       <details class="css-instructions"><summary>Use Martlet on a website</summary><p>Load the CSS, then set <code>data-martlet</code> to <code>light</code> or <code>dark</code> on the element you want to theme.</p><pre><code>&lt;link rel="stylesheet" href="martlet.css"&gt;

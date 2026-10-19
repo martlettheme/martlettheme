@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-dev (unreleased)
+## 1.0.0 (2026-10-18)
 
 - Rebuild the homepage as an interactive color specimen book with simultaneous Light/Dark previews, Interface/Code/Terminal views, searchable tokens, copy controls, and a live contrast inspector.
 - Add generated native Terminal.app profiles and macOS import instructions; validate all 21 keyed NSColor archives in each profile.
@@ -18,5 +18,5 @@
 - Preserve Prism 7's original twenty UI token values as a starting compatibility baseline.
 - Expand light and dark palettes with additional application roles, named syntax colors, eight categorical data colors per mode, and status colors.
 - Add CSS and JSON generation, 16-color terminal and VS Code starter descriptors, and representative contrast tests.
-- Add an Astro documentation/preview website.
+- Add the Astro documentation website.
 - Adopt `prism7.app` as the canonical Prism 7 link, with `martlettheme.dev` reserved as a future deployment target.

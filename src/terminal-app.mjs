@@ -1,4 +1,6 @@
 import bplist from 'bplist-creator';
+import { readFileSync } from 'node:fs';
+const { version }=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8'));
 import { terminal } from './ports.mjs';
 
 /** Apple's Terminal profile colors are NSData containing keyed NSColor archives. */
@@ -24,6 +26,7 @@ export function terminalApp(theme) {
   const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
   const colors=Object.entries(terminalAppColors(theme)).map(([key,hex])=>`  <key>${key}</key>\n  <data>${archiveColor(hex).toString('base64')}</data>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Martlet Theme ${version}. Generated from src/palettes.mjs. -->
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
   <key>name</key><string>${escape(theme.name)}</string>
