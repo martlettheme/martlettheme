@@ -37,12 +37,12 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 <div class="app-bar"><span class="app-name"><b>M</b> An imagined application</span><span class="app-links">Overview &nbsp; Projects &nbsp; Settings</span><span class="avatar">JH</span></div>
 <div class="app-body"><aside class="sidebar"><small>WORKSPACE</small><strong>▣ &nbsp; Dashboard</strong><span>◫ &nbsp; Projects</span><span>◷ &nbsp; Activity</span><span>⚙ &nbsp; Preferences</span></aside><div class="app-content"><div class="app-heading"><div><small>YOUR WORKSPACE</small><h3>Welcome back.</h3><p>Here's what your projects are doing.</p></div><button type="button">+ New project</button></div>
 <div class="stats"><article><small>Active projects</small><strong>12</strong><span>↑ 2 this week</span></article><article><small>Completed tasks</small><strong>248</strong><span>↑ 18 this week</span></article><article><small>Outstanding reviews</small><strong>03</strong><span>Needs attention</span></article></div>
-<div class="code-example"><header>theme.mjs <span>● ● ●</span></header><pre><code><i>const</i> theme = {
+<div class="code-example"><header>theme.mjs <span>● ● ●</span></header><pre><code><i>const</i> theme = &#123;
   <mark>name</mark>: <em>'Martlet'</em>,
   <mark>mode</mark>: <em>'dark'</em>,
   <mark>accessible</mark>: <i>true</i>,
   <mark>version</mark>: <u>1</u>
-};</code></pre></div></div></div>
+&#125;;</code></pre></div></div></div>
 </div><p class="fineprint">This is an illustrative mockup, not a Prism 7 screenshot. Its colors are drawn from the generated Martlet CSS.</p></div></section>
 <section id="tokens" class="section wrap"><header class="section-header"><div><p class="eyebrow">03 / DESIGN TOKENS</p><h2>Beyond a simple palette.</h2></div><p>88 semantic tokens in each mode describe interface surfaces, text, controls, statuses, charts, and source code. The complete specification is machine-readable.</p></header>
 <div class="comparison">{entries.map(theme=><article class="token-card"><h3>{theme.name}</h3>{keys.map(k=><div class="token-row"><div class="token-chip" style={'background:'+theme.tokens[k]}></div><div><strong>{k}</strong><small>--martlet-{k}</small></div><code>{theme.tokens[k]}</code></div>)}</article>)}</div>
@@ -56,10 +56,10 @@ const downloads=['martlet.css','martlet.json','martlet-light.css','martlet-dark.
 &lt;/main&gt;
 
 /* Your stylesheet */
-.panel {
+.panel &#123;
   background: var(--martlet-panel);
   color: var(--martlet-text);
-}</code></pre></div></section>
+&#125;</code></pre></div></section>
 <section id="downloads" class="section wrap"><header class="section-header"><div><p class="eyebrow">05 / DOWNLOAD</p><h2>Pick up the palette.</h2></div><p>All files are generated from one canonical source. These are development artifacts, not final polished application extensions.</p></header><div class="download-grid">{downloads.map(name=><a href={'/downloads/'+name} download><span><strong>{name.startsWith('martlet-light')?'Martlet Light':name.startsWith('martlet-dark')?'Martlet Dark':'Complete Martlet'} </strong><small>{name}</small></span><span class="arrow">↓</span></a>)}</div>
 <p class="fineprint">First implemented in <a href="https://prism7.app/">Prism 7</a>. Source repository: <a href="https://github.com/k3jph/martlettheme">k3jph/martlettheme</a>.</p></section>
 </main>
