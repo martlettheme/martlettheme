@@ -1,18 +1,19 @@
 # Distribution maintenance
 
-The canonical colors remain in `src/palettes.mjs`. `src/app-ports.mjs` maps semantic roles into native Vim, Emacs, Chrome, Firefox, and ChatGPT desktop imports/settings. `scripts/distributions.mjs` and the templates under `scripts/templates/` assemble standalone distribution repositories and website archives.
+The canonical design definitions live in [`martlettheme/npm`](https://github.com/martlettheme/npm). `src/palettes.mjs` re-exports the installed `@martlet/theme` release. `src/app-ports.mjs` maps semantic roles into native Vim, Emacs, Chrome, Firefox, and ChatGPT desktop imports/settings. `scripts/distributions.mjs` and the templates under `scripts/templates/` assemble standalone distribution repositories and website archives.
 
 ## Build
 
-Run `npm run build`. Full standalone trees appear under `artifacts/repositories/{npm,vim,emacs,chrome,firefox}`. Each contains a source.json snapshot, scripts/build.mjs, verification, LICENSE, README, and a GitHub Actions workflow. These snapshots make public distributions independently reproducible without access to this source repository.
+Run `npm run build`. Full standalone trees appear under `artifacts/repositories/{vim,emacs,chrome,firefox}`. Each contains a source.json snapshot, scripts/build.mjs, verification, LICENSE, README, and a GitHub Actions workflow. These snapshots make public distributions independently reproducible without access to this source repository.
 
-After changing a palette or mapper, build and test here, then sync each generated directory into the corresponding public `martlettheme` distribution repository. Exclude ignored files: npm tarballs in the npm repo, and dist/ in the editor/browser repos. Commit the generated native files as well as source.json and the scripts. Their CI rebuilds, tests, and checks for generated-file drift. There is no automatic cross-repository write credential or publishing workflow.
+After publishing a core design change, update the pinned `@martlet/theme` version and lockfile here. After changing a mapper, build and test here, then sync each generated directory into the corresponding public `martlettheme` distribution repository. Exclude ignored dist/ directories in the editor/browser repos. Commit the generated native files as well as source.json and the scripts. Their CI rebuilds, tests, and checks for generated-file drift. There is no automatic cross-repository write credential or publishing workflow.
 
-All initial package versions are 1.0.0. Future published releases need intentional version bumps; use the same upstream release version across distributions generated together. The npm scope is not reserved by the GitHub organization and must be set up separately before registry publishing.
+The npm packages are independently versioned: `@martlet/theme` 2.0.0 and `@martlet/astro` 1.0.0. The website pins exact npm releases; `npm ci` installs the lockfile versions. The editor/browser distributions remain at 1.0.0 and use the site release version when generated together. Future releases need intentional version bumps.
 
 ## Outputs and scope
 
-- npm: `@martlettheme/theme`, with scoped CSS, complete and per-mode JSON, ESM, CommonJS, declarations, and highlight.js CSS. No runtime dependencies, install scripts, or bundled fonts. Archives are locally installable before registry publication.
+- npm: `@martlet/theme`, with scoped CSS, complete and per-mode JSON, ESM, CommonJS, declarations, highlight.js CSS, design tokens, and optional typography, fonts, and component styles. Font assets come from its Fontsource dependencies. The website serves an archive packed from the installed release and also documents registry installation.
+- Astro: `@martlet/astro`, maintained in [`martlettheme/astro`](https://github.com/martlettheme/astro), wraps the core in reusable components and a neutral starter. Both websites consume the published package.
 - Vim/Neovim: root colors/ layout with explicit Light/Dark files and a background-aware dispatcher. Exact GUI/truecolor colors, xterm-256 approximations, standard editor and syntax groups, and Neovim Treesitter/LSP links. Test both editors, both appearances, and truecolor/fallback.
 - Emacs: native -theme.el files, plus a package entry registering custom-theme-load-path. Standard font-lock, Org, UI, diff, completion, and ANSI faces. Emacs 27.1+. Not submitted to MELPA.
 - Chrome: two Manifest V3 theme-only packages, one per appearance. No JavaScript, permissions, remote assets, or new-tab replacement. These are upload/source ZIPs, not signed store installations.
