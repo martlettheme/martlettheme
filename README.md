@@ -1,3 +1,5 @@
+> This website now consumes `@martlet/theme` and `@martlet/astro`. The authoritative design definitions live in [martlettheme/npm](https://github.com/martlettheme/npm). `src/palettes.mjs` re-exports the installed core; edit that upstream repository to change the design. Application adapters remain here. See [the migration playbook](https://github.com/martlettheme/astro/blob/main/docs/playbook.md).
+
 # Martlet Theme
 
 **Color with a story. Built for what’s next.**
@@ -64,3 +66,4 @@ The public distribution repositories are [martlettheme/npm](https://github.com/m
 The npm package is named `@martlettheme/theme`; it is prepared but not yet published to the registry. Chrome Web Store and Mozilla Add-ons publication are also pending, and Firefox archives are unsigned. ChatGPT/Codex desktop imports under `ports/chatgpt/` use the `codex-theme-v1` format matched to a desktop app export, with Light/Dark copy buttons and `.txt` downloads. Manual Appearance settings remain available as JSON.
 
 Run `npm run build` to generate all formats, including standalone distribution directories under `artifacts/repositories/`. See [distribution maintenance](docs/distributions.md).
+
