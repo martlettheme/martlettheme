@@ -1,5 +1,6 @@
 // Stub the Google tag so verification never submits real Analytics data.
 import { chromium } from 'playwright';
+import { version as coreVersion } from '@martlet/theme';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
@@ -152,7 +153,7 @@ try {
     await page.setViewportSize({width:390,height:844});
     await page.goto(base+'/');
     await page.screenshot({path:'artifacts/qa/mobile.png'});
-    for(const file of ['favicon.svg','favicon.ico','apple-touch-icon.png','site.webmanifest','downloads/martlet-light.terminal','downloads/martlet-dark.terminal','downloads/martlet-light.zsh-theme','downloads/martlet-dark.zsh-theme', 'downloads/martlet-vim.zip', 'downloads/martlet-emacs.zip', 'downloads/martlet-light-chrome.zip', 'downloads/martlet-dark-chrome.zip', 'downloads/martlet-firefox.zip', 'downloads/martlet-light-chatgpt.json', 'downloads/martlet-dark-chatgpt.json', 'downloads/martlet-light-chatgpt.txt', 'downloads/martlet-dark-chatgpt.txt', 'downloads/martlettheme-theme-1.0.0.tgz']) assert.equal((await page.request.get(base+'/'+file)).ok(),true);
+    for(const file of ['favicon.svg','favicon.ico','apple-touch-icon.png','site.webmanifest','downloads/martlet-light.terminal','downloads/martlet-dark.terminal','downloads/martlet-light.zsh-theme','downloads/martlet-dark.zsh-theme', 'downloads/martlet-vim.zip', 'downloads/martlet-emacs.zip', 'downloads/martlet-light-chrome.zip', 'downloads/martlet-dark-chrome.zip', 'downloads/martlet-firefox.zip', 'downloads/martlet-light-chatgpt.json', 'downloads/martlet-dark-chatgpt.json', 'downloads/martlet-light-chatgpt.txt', 'downloads/martlet-dark-chatgpt.txt', `downloads/martlet-theme-${coreVersion}.tgz`]) assert.equal((await page.request.get(base+'/'+file)).ok(),true,file);
     await page.goto(base+'/privacy-and-cookie-notice/');
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Privacy notice overflows');
   });
@@ -258,3 +259,4 @@ try {
   await browser.close();
   await new Promise(done=>server.close(done));
 }
+
