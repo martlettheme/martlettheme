@@ -46,6 +46,8 @@ For browser verification, run `npx playwright install chromium`, then `npm run b
 
 Generated deliverables are placed in `artifacts/` and `site/public/downloads/`. Those directories are derived from `src/palettes.mjs` and should not be edited manually.
 
+Cloudflare Workers builds the static site with `npm run build` and serves `dist/` using the root `wrangler.json`. The configuration includes the `previews` block required by the branch deploy command, `npx wrangler preview`. Production uses `npx wrangler deploy`.
+
 ## Use on a website
 
 ```html
