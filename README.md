@@ -1,3 +1,7 @@
+## Package documentation
+
+The public [design system specification](https://martlettheme.dev/design-system/) covers installation, typography, foundation tokens, Astro components, interaction guidance, integrations, and releases. Its [JSON reference](https://martlettheme.dev/design-system.json) is generated directly from installed npm exports.
+
 > This website now consumes `@martlet/theme` and `@martlet/astro`. The authoritative design definitions live in [martlettheme/npm](https://github.com/martlettheme/npm). `src/palettes.mjs` re-exports the installed core; edit that upstream repository to change the design. Application adapters remain here. See [the migration playbook](https://github.com/martlettheme/astro/blob/main/docs/playbook.md).
 
 # Martlet Theme

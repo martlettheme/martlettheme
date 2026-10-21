@@ -1,9 +1,15 @@
 # Martlet architecture
 
+The public [design system specification](https://martlettheme.dev/design-system/)
+and [JSON reference](https://martlettheme.dev/design-system.json) are generated
+from the installed core and Astro releases. Canonical definitions live in
+`martlettheme/npm`; `src/palettes.mjs` re-exports that installed package.
+Site layout and application port generators remain in this repository.
+
 Martlet's heritage palette is distinct from its application palette.
 
 - **Heritage**: canonical historical/livery hues (blue, silver, gold). Their meaning and attribution should not be casually redefined.
-- **Semantic tokens**: colors by purpose, with matched names between modes. The source is `src/palettes.mjs`.
+- **Semantic tokens**: colors by purpose, with matched names between modes. The source is the published core; `src/palettes.mjs` re-exports it.
 - **Ports**: program-specific transformations of the semantic source: `src/ports.mjs`.
 - **Distribution**: CSS, JSON, and native Terminal.app profiles emitted by `npm run tokens`, and a reference website built with Astro.
 
@@ -19,6 +25,6 @@ The tests enforce the WCAG 2.x 4.5:1 text ratio for a **defined list of foregrou
 
 Syntax and chart colors are not interchangeable with user-interface button accents. Different token roles exist because their combinations, density and meaning differ.
 
-## Proposed domain
+## Published website
 
-`martlettheme.dev` is the intended site address. DNS and public deployment are intentionally deferred.
+`martlettheme.dev` consumes the same published packages as jameshoward.us.

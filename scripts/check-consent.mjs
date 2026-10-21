@@ -1,6 +1,7 @@
 // Stub the Google tag so verification never submits real Analytics data.
 import { chromium } from 'playwright';
-import { version as coreVersion } from '@martlet/theme';
+import { version as coreVersion, foundation, design, capabilities } from '@martlet/theme';
+import { version as astroVersion } from '@martlet/astro/package.json';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
@@ -253,6 +254,34 @@ try {
     assert.equal(await page.locator('#copy-value').inputValue(),'#FEE46E');
     await page.locator('[data-copy-close]').click();
     assert.equal(await button.evaluate(e=>e===document.activeElement),true);
+  });
+  await scenario('public package links and generated design system reference',async({page})=>{
+    await page.locator('#cookie-banner [data-cookie-reject]').click();
+    await page.goto(base+'/#downloads');
+    assert.equal(await page.locator('#npm-title').count(),1);
+    assert.equal(await page.locator('.app-ports a[href="https://www.npmjs.com/package/@martlet/theme"]').count(),1);
+    assert.equal(await page.locator('.app-ports a[href="https://www.npmjs.com/package/@martlet/astro"]').count(),1);
+    await page.locator('.mast nav a[href="/design-system/"]').click();
+    assert.equal(await page.getByRole('heading',{name:'Build with Martlet.',exact:true}).count(),1);
+    const response=await page.request.get(base+'/design-system.json');
+    assert.equal(response.ok(),true);
+    const spec=await response.json();
+    assert.equal(spec.packages.core.version,coreVersion);
+    assert.equal(spec.packages.astro.version,astroVersion);
+    assert.deepEqual(spec.foundation,foundation);
+    assert.deepEqual(spec.design,design);
+    assert.deepEqual(spec.capabilities,capabilities);
+    assert.equal(await page.locator('#foundation tbody tr').count(),Object.keys(foundation.tokens).length);
+    assert.equal(await page.locator('#astro tbody tr').count(),5);
+    for(const width of [280,307,390,1440]){
+      await page.setViewportSize({width,height:900});
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`Design reference overflow at ${width}px`);
+    }
+    await page.setViewportSize({width:307,height:900});
+    await page.addStyleTag({content:'html{font-size:150% !important}'});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Design reference overflow with enlarged text');
+    await mkdir('artifacts/qa',{recursive:true});
+    await page.screenshot({path:'artifacts/qa/design-system-mobile.png'});
   });
   console.log(`${results.length} browser scenarios passed. Google requests were intercepted.`);
 } finally {
