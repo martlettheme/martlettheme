@@ -1,7 +1,7 @@
 {
   "mcp": {
     "url": "https://martlettheme.dev/mcp",
-    "published": false
+    "published": true
   },
   "packages": {
     "core": {
