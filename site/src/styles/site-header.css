@@ -1,6 +1,5 @@
-/* Origin SiteHeader at k3jph/k3jph.github.io@32b7166a629ea696147d0d779d911b713e4baf7e.
-   Solid documentation translation matches design-workbench@4e8509c's React header.
-   Host labels differ; identity, type, spacing, surface and responsive rules do not. */
+/* Documentation host: owner-directed white/grey full-width band (25 October 2026).
+   Origin typography, marks and menu behavior remain family-specific. */
 html { scroll-padding-block-start:5.6rem; }
 body { padding-block-start:4.6rem; }
 .mast {
@@ -45,3 +44,13 @@ body { padding-block-start:4.6rem; }
 }
 @media(prefers-reduced-motion:reduce) { .mast nav a::after { transition-duration:.01ms; } }
 @media print { body { padding:0; } .mast { display:none; } }
+
+/* Owner direction: white light navigation; full-width grey band in dark appearance. */
+body { --documentation-nav-bg:#fff; --documentation-nav-text:var(--martlet-color-navy-900); --documentation-nav-rule:var(--martlet-color-gold-700); --documentation-nav-border:var(--martlet-color-slate-150); }
+body:has([data-palette-mode="dark"][aria-pressed="true"]) { --documentation-nav-bg:#2e3947; --documentation-nav-text:#fff; --documentation-nav-rule:var(--martlet-color-gold-300); --documentation-nav-border:rgb(255 255 255/.13); }
+.mast { background:var(--documentation-nav-bg); border-block-end-color:var(--documentation-nav-border); box-shadow:none; }
+.mast .brand,.mast nav a,.mast-toggle { color:var(--documentation-nav-text); }
+.mast-toggle { border-color:currentColor; }
+.mast nav a::after { background:var(--documentation-nav-rule); }
+.mast nav a:is([aria-current=page],:hover) { color:var(--documentation-nav-rule); }
+.mast :focus-visible { outline-color:var(--documentation-nav-text); box-shadow:0 0 0 6px var(--documentation-nav-bg); }
