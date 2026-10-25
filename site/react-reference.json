@@ -1,0 +1,14 @@
+{
+  "family": "martlet",
+  "preview": {
+    "version": "0.3.0",
+    "stage": "preview"
+  },
+  "sourceCommit": "4e8509c60eef5e8b36984e6164984152bb4f33c2",
+  "base": "/react/",
+  "readOnlyReference": true,
+  "archive": "martlet-react-reference-0.3.0.tar.gz",
+  "sha256": "a4c3be60db3466debc0578ce557f4edb21e78b7466c7689095a6b4f6824e77ab",
+  "bytes": 1442955,
+  "archiveUrl": "https://github.com/howardjp/design-workbench/releases/download/design-v0.3.0/martlet-react-reference-0.3.0.tar.gz"
+}

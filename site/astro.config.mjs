@@ -1,2 +1,2 @@
 import {defineConfig} from 'astro/config';
-export default defineConfig({output:'static',outDir:'../dist'});
+export default defineConfig({site:'https://martletdesign.dev',output:'static',outDir:'../dist'});

@@ -1,16 +1,18 @@
+> **Design language 0.3 preview.** Grammar, components, patterns, React references and agent tooling share this home. Package and theme-export versions remain independent. Existing martlettheme.dev MCP connections remain supported.
+
 ## Package documentation
 
-The public [design system specification](https://martlettheme.dev/design-system/) covers installation, typography, foundation tokens, Astro components, interaction guidance, integrations, and releases. Its [JSON reference](https://martlettheme.dev/design-system.json) is generated directly from installed npm exports.
+The public [design system specification](https://martletdesign.dev/design-system/) covers installation, typography, foundation tokens, Astro components, interaction guidance, integrations, and releases. Its [JSON reference](https://martletdesign.dev/design-system.json) is generated directly from installed npm exports.
 
 > This website now consumes `@martlet/theme` and `@martlet/astro`. The authoritative design definitions live in [martlettheme/npm](https://github.com/martlettheme/npm). `src/palettes.mjs` re-exports the installed core; edit that upstream repository to change the design. Application adapters remain here. See [the migration playbook](https://github.com/martlettheme/astro/blob/main/docs/playbook.md).
 
-# Martlet Theme
+# Martlet Design Language
 
 **Color with a story. Built for what’s next.**
 
 Martlet Light and Martlet Dark are original color themes inspired by the blue, silver, and gold of **James P. Howard, II’s personal heraldic identity and family tartan**, documented at [jameshoward.us](https://jameshoward.us/). They do not claim to represent heraldry in general. Their first application was [Prism 7](https://prism7.app/). This project develops Martlet as a standalone, reusable theme family, not as Prism 7's stylesheet.
 
-**Website:** [martlettheme.dev](https://martlettheme.dev/) .  
+**Website:** [martletdesign.dev](https://martletdesign.dev/).
 **Version:** 1.0.0.
 
 ## What is included?
@@ -67,7 +69,7 @@ Original source colors from the [James Howard & Family tartan](https://jameshowa
 
 The public distribution repositories are [martlettheme/npm](https://github.com/martlettheme/npm), [martlettheme/vim](https://github.com/martlettheme/vim), [martlettheme/emacs](https://github.com/martlettheme/emacs), [martlettheme/chrome](https://github.com/martlettheme/chrome), and [martlettheme/firefox](https://github.com/martlettheme/firefox). The editor and browser repositories include a canonical color snapshot, a dependency-free build, verification, and installation instructions. The core and Astro packages are maintained independently. Both Light and Dark are included. The website Downloads section serves the archives.
 
-The npm packages are published as [`@martlet/theme`](https://www.npmjs.com/package/@martlet/theme) 2.0.0 and [`@martlet/astro`](https://www.npmjs.com/package/@martlet/astro) 1.0.0. Both this website and jameshoward.us install these releases from npm, with exact versions and lockfile integrity. Chrome Web Store and Mozilla Add-ons publication are also pending, and Firefox archives are unsigned. ChatGPT/Codex desktop imports under `ports/chatgpt/` use the `codex-theme-v1` format matched to a desktop app export, with Light/Dark copy buttons and `.txt` downloads. Manual Appearance settings remain available as JSON.
+The npm packages are published as [`@martlet/theme`](https://www.npmjs.com/package/@martlet/theme) 2.2.1 and [`@martlet/astro`](https://www.npmjs.com/package/@martlet/astro) 1.2.1. Both this website and jameshoward.us install these releases from npm, with exact versions and lockfile integrity. Chrome Web Store and Mozilla Add-ons publication are also pending, and Firefox archives are unsigned. ChatGPT/Codex desktop imports under `ports/chatgpt/` use the `codex-theme-v1` format matched to a desktop app export, with Light/Dark copy buttons and `.txt` downloads. Manual Appearance settings remain available as JSON.
 
 Run `npm run build` to generate all formats, including standalone distribution directories under `artifacts/repositories/`. See [distribution maintenance](docs/distributions.md).
 
