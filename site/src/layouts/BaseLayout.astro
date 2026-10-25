@@ -4,10 +4,15 @@ import SiteFooter from '../components/SiteFooter.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
 import '../styles/site-chrome.css';
-const { title = 'Martlet Theme — Light & Dark', description = 'Martlet Light and Dark, an open-source design system for websites, editors, terminals, and applications.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title = 'Martlet · Design language 0.3 preview', description = 'Martlet Light and Dark, an independent design language for publishing, services, and applications, with components, patterns and agent tools.' } = Astro.props;
 ---
 <MartletLayout title={title} description={description} mainId="main" mainTabindex={-1}>
   <Fragment slot="head">
+  <link rel="canonical" href={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
   <meta name="theme-color" content="#154c9e" />
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
@@ -15,8 +20,8 @@ const { title = 'Martlet Theme — Light & Dark', description = 'Martlet Light a
   <link rel="manifest" href="/site.webmanifest" />
 </Fragment>
   <header slot="header" class="mast">
-    <a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="38" height="38" alt="" /> <span>Martlet <small>Theme</small></span></a>
-    <nav aria-label="Sections"><a href="/#preview">Explore</a><a href="/#palette">Colors</a><a href="/#downloads">Downloads</a><a href="/#story">Story</a><a href="/design-system/">Design system</a><a href="/agents/">Agent tools</a><a class="gitlink" href="https://github.com/martlettheme/martlettheme">GitHub ↗</a></nav>
+    <a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="38" height="38" alt="" /> <span>Martlet <small>Design</small></span></a>
+    <nav aria-label="Sections"><a href="/design-language/">The language</a><a href="/react/">React</a><a href="/#palette">Colors</a><a href="/#downloads">Downloads</a><a href="/design-system/">Astro & foundations</a><a href="/agents/">Agent tools</a><a class="gitlink" href="https://github.com/martlettheme/martlettheme">GitHub ↗</a></nav>
   </header>
   <slot />
   <Fragment slot="footer"><SiteFooter /><CookieConsent /></Fragment>
