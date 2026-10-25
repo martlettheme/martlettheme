@@ -24,7 +24,7 @@
     "node": ">=20.19.0"
   },
   "dependencies": {
-    "@martlet/astro": "1.2.0",
-    "@martlet/theme": "2.2.0"
+    "@martlet/astro": "1.2.1",
+    "@martlet/theme": "2.2.1"
   }
 }
