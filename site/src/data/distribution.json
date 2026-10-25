@@ -1,0 +1,26 @@
+{
+  "mcp": {
+    "url": "https://martlettheme.dev/mcp",
+    "published": false
+  },
+  "packages": {
+    "core": {
+      "name": "@martlet/theme",
+      "version": "2.2.1",
+      "published": true,
+      "tag": "next"
+    },
+    "Astro": {
+      "name": "@martlet/astro",
+      "version": "1.2.1",
+      "published": true,
+      "tag": "next"
+    },
+    "React": {
+      "name": "@martlet/react",
+      "version": "0.1.0",
+      "published": false,
+      "tag": "next"
+    }
+  }
+}

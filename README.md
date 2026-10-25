@@ -71,3 +71,7 @@ The npm packages are published as [`@martlet/theme`](https://www.npmjs.com/packa
 
 Run `npm run build` to generate all formats, including standalone distribution directories under `artifacts/repositories/`. See [distribution maintenance](docs/distributions.md).
 
+
+## Consolidated language reference
+
+`/design-language/` renders the pinned core grammar, source decisions and framework matrix. `scripts/sync-language.mjs --check` verifies snapshot hashes during every build. This source consolidation does not alter the installed package pins or publish the candidate packages.
