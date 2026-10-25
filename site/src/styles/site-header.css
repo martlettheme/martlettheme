@@ -1,0 +1,47 @@
+/* Origin SiteHeader at k3jph/k3jph.github.io@32b7166a629ea696147d0d779d911b713e4baf7e.
+   Solid documentation translation matches design-workbench@4e8509c's React header.
+   Host labels differ; identity, type, spacing, surface and responsive rules do not. */
+html { scroll-padding-block-start:5.6rem; }
+body { padding-block-start:4.6rem; }
+.mast {
+  position:fixed; z-index:50; inset:0 0 auto; display:flex; align-items:center;
+  min-block-size:4.6rem; gap:1.5rem; flex-wrap:nowrap;
+  padding:.5rem max(var(--martlet-gutter),calc((100vw - var(--martlet-content-width))/2));
+  border:0; border-block-end:1px solid rgb(255 255 255/.13);
+  background:var(--martlet-color-navy-950); box-shadow:0 5px 24px rgb(0 0 0/.2);
+  color:white; font:1.075rem/1.72 var(--martlet-font-sans);
+}
+.mast-identity,.mast .brand { display:flex; align-items:center; gap:.75rem; }
+.mast .brand { color:white; text-decoration:none; white-space:nowrap; font:600 1rem/1.4 var(--martlet-font-display); }
+.mast .brand-mark { display:block; inline-size:42px; block-size:42px; flex:none; }
+.mast nav { display:flex; align-items:center; gap:1.25rem; flex-wrap:nowrap; margin-inline-start:auto; }
+.mast nav a { position:relative; min-block-size:0; padding:.4rem 0; color:white; font-size:.86rem; font-weight:700; text-decoration:none; border:0; }
+.mast nav a::after { position:absolute; inset-inline:0; inset-block-end:0; block-size:2px; transform:scaleX(0); background:var(--martlet-color-gold-300); content:''; transition:transform .2s ease; }
+.mast nav a:is([aria-current=page],:hover) { color:var(--martlet-color-gold-300); }
+.mast nav a:is([aria-current=page],:hover)::after { transform:scaleX(1); }
+.mast :focus-visible { outline:3px solid white; outline-offset:3px; box-shadow:0 0 0 6px var(--martlet-color-navy-950); }
+.mast-toggle { display:none; padding:.5rem .75rem; border:1px solid rgb(255 255 255/.52); border-radius:.25rem; color:white; background:transparent; font:700 .9rem/1.5 var(--martlet-font-sans); }
+@media(max-width:68rem),(max-aspect-ratio:4/5) {
+  .mast { flex-wrap:wrap; padding-inline:var(--martlet-gutter); gap:0; }
+  .mast-identity { inline-size:100%; justify-content:space-between; }
+  .mast nav { inline-size:100%; margin:0; flex-direction:column; align-items:stretch; gap:.25rem; padding-block:1rem; max-block-size:60dvh; overflow:auto; }
+  .mast nav a { display:block; padding:.65rem .45rem; }
+  .mast nav a::after { inset-inline-start:.45rem; inline-size:2.5rem; }
+  .mast[data-menu-ready=true] .mast-toggle { display:block; }
+  .mast[data-menu-ready=true] nav { display:none; }
+  .mast[data-menu-open=true] nav { display:flex; }
+  /* Without scripting, keep every destination in flow and operable. */
+  .mast:not([data-menu-ready]) { position:static; }
+  body:has(.mast:not([data-menu-ready])) { padding-block-start:0; }
+}
+@media(max-width:35rem) {
+  body { padding-block-start:0; }
+  html { scroll-padding-block-start:1rem; }
+  .mast { position:static; }
+  .mast-identity { min-inline-size:0; flex-wrap:wrap; gap:.5rem; }
+  .mast .brand { min-inline-size:0; flex:1 1 10rem; white-space:normal; }
+  .mast .brand span { min-inline-size:0; overflow-wrap:anywhere; }
+  .mast-toggle { flex:none; }
+}
+@media(prefers-reduced-motion:reduce) { .mast nav a::after { transition-duration:.01ms; } }
+@media print { body { padding:0; } .mast { display:none; } }

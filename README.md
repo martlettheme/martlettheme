@@ -46,6 +46,8 @@ The site uses the owner's shared Google Analytics measurement ID `G-FSDET4HG4L`.
 
 For browser verification, run `npx playwright install chromium`, then `npm run build && npm run test:browser`. These checks intercept the Google tag and never submit real Analytics data.
 
+The documentation header follows the solid state of the originating `SiteHeader.astro` at `k3jph/k3jph.github.io@32b7166a629ea696147d0d779d911b713e4baf7e`. Its original mark, Cinzel identity, Lato navigation, navy surface, gold current/hover rule, spacing, and responsive Menu contract match the React reference. Link destinations and the host name remain specific to each documentation section. The browser suite compares the actual computed header styles and mark bytes against the published React build, then exercises current-page state, narrow navigation, Escape/focus recovery, anchor visibility, and operation without JavaScript. A passing palette or package test alone does not establish this consistency.
+
 Generated deliverables are placed in `artifacts/` and `site/public/downloads/`. Those directories are derived from `src/palettes.mjs` and should not be edited manually.
 
 ## Use on a website

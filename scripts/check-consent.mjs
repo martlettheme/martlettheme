@@ -325,6 +325,72 @@ try {
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Public React reference reflows with enlarged text');
     await page.screenshot({path:'artifacts/qa/public-react-agents.png'});
   });
+  await scenario('Astro and React documentation headers share the origin identity and responsive contract',async({page})=>{
+    await page.locator('#cookie-banner [data-cookie-reject]').click();
+    const inspect=async(header,brand,link,nav)=>page.evaluate(({header,brand,link,nav})=>{
+      const pick=(selector,keys)=>{
+        const element=document.querySelector(selector),style=getComputedStyle(element);
+        return Object.fromEntries(keys.map(key=>[key,style[key]]));
+      };
+      return {
+        header:pick(header,['backgroundColor','borderBottom','boxShadow','position','paddingTop','paddingRight','paddingBottom','paddingLeft','height']),
+        brand:pick(brand,['fontFamily','fontSize','fontWeight','lineHeight','color','gap']),
+        mark:pick(brand+' img',['width','height']),
+        link:pick(link,['fontFamily','fontSize','fontWeight','lineHeight','paddingTop','paddingBottom','color']),
+        nav:pick(nav,['gap']),
+      };
+    },{header,brand,link,nav});
+    await page.evaluate(()=>document.fonts.ready);
+    const astro=await inspect('.mast','.mast .brand','.mast nav a','.mast nav');
+    assert.equal(await page.locator('.brand').innerText(),'Martlet Design');
+    const astroMark=await (await page.request.get(base+'/martlet-mark.svg')).body();
+    await page.goto(base+'/react/');
+    await page.evaluate(()=>document.fonts.ready);
+    const react=await inspect('.martlet-app-header','.martlet-reference-brand','.martlet-app-header nav a','.martlet-reference-navigation-links');
+    assert.deepEqual(astro,react,'The same Martlet header object must retain its visual rules across renderers');
+    const reactMark=await page.locator('.martlet-reference-brand img').getAttribute('src');
+    assert.deepEqual(await (await page.request.get(new URL(reactMark,page.url()).href)).body(),astroMark,'Use the same original mark');
+    const current=await page.locator('.martlet-app-header nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor}));
+    await page.goto(base+'/design-language/');
+    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The language');
+    assert.deepEqual(await page.locator('.mast nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor})),current);
+    for(const width of [1080,768,320]) {
+      await page.setViewportSize({width,height:900});
+      const toggle=page.getByRole('button',{name:'Menu',exact:true});
+      assert.equal(await toggle.isVisible(),true);
+      assert.equal(await page.locator('.mast nav').isVisible(),false);
+      await toggle.click();
+      assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+      assert.equal(await page.locator('.mast nav').isVisible(),true);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+      await page.keyboard.press('Escape');
+      assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+      assert.equal(await toggle.evaluate(e=>e===document.activeElement),true);
+    }
+    await page.setViewportSize({width:320,height:900});
+    await page.getByRole('button',{name:'Menu',exact:true}).click();
+    await page.locator('.mast nav a[href="/#palette"]').click();
+    await page.waitForURL(base+'/#palette');
+    await page.waitForFunction(()=>{
+      const top=document.querySelector('#palette').getBoundingClientRect().top;
+      return top>=0&&top<100;
+    });
+    await page.goto(base+'/');
+    await page.evaluate(()=>document.fonts.ready);
+    await page.screenshot({path:'artifacts/qa/martlet-header-mobile.png'});
+    await page.setViewportSize({width:1440,height:1000});
+    await page.goto(base+'/design-language/');
+    await page.screenshot({path:'artifacts/qa/martlet-header-desktop.png'});
+  });
+  await scenario('Martlet navigation remains usable without JavaScript at narrow widths',async({page})=>{
+    await page.setViewportSize({width:320,height:900});
+    assert.equal(await page.getByRole('button',{name:'Menu',exact:true}).isVisible(),false);
+    assert.equal(await page.locator('.mast nav').isVisible(),true);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    await page.locator('.mast nav a[href="/design-language/"]').click();
+    await page.waitForURL(base+'/design-language/');
+    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The language');
+  },{javaScriptEnabled:false});
   console.log(`${results.length} browser scenarios passed. Google requests were intercepted.`);
 } finally {
   await browser.close();
