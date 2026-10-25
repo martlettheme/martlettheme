@@ -1,0 +1,47 @@
+---
+import '../styles/site-header.css';
+const links = [
+  ['/design-language/', 'The language'],
+  ['/react/', 'React'],
+  ['/#palette', 'Colors'],
+  ['/#downloads', 'Downloads'],
+  ['/design-system/', 'Astro & foundations'],
+  ['/agents/', 'Agent tools'],
+  ['https://github.com/martlettheme/martlettheme', 'GitHub ↗'],
+];
+---
+<header class="mast" data-site-header>
+  <div class="mast-identity">
+    <a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="42" height="42" alt="" /><span>Martlet Design</span></a>
+    <button class="mast-toggle" type="button" aria-expanded="false" aria-controls="martlet-site-navigation" hidden>Menu</button>
+  </div>
+  <nav id="martlet-site-navigation" aria-label="Sections">
+    {links.map(([href, label]) => <a href={href} aria-current={href === Astro.url.pathname ? 'page' : undefined}>{label}</a>)}
+  </nav>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const button = header?.querySelector<HTMLButtonElement>('.mast-toggle');
+  const nav = header?.querySelector<HTMLElement>('nav');
+  if (header && button && nav) {
+    const setMenu = (open: boolean) => {
+      header.dataset.menuOpen = String(open);
+      button.setAttribute('aria-expanded', String(open));
+    };
+    header.dataset.menuReady = 'true';
+    button.hidden = false;
+    button.addEventListener('click', () => setMenu(button.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('click', event => {
+      if (event.target instanceof Element && event.target.closest('a')) setMenu(false);
+    });
+    window.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        button.focus();
+      }
+    });
+    const media = matchMedia('(max-width:68rem), (max-aspect-ratio:4/5)');
+    media.addEventListener('change', () => setMenu(false));
+    window.addEventListener('pageshow', () => setMenu(false));
+  }
+</script>
