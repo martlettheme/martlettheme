@@ -4,11 +4,12 @@
     "version": "0.3.0",
     "stage": "preview"
   },
-  "sourceCommit": "4e8509c60eef5e8b36984e6164984152bb4f33c2",
+  "artifactVersion": "0.3.0-nav.1",
+  "sourceCommit": "400aacb6c282a383d7915085125cd7724036b5c3",
   "base": "/react/",
   "readOnlyReference": true,
-  "archive": "martlet-react-reference-0.3.0.tar.gz",
-  "sha256": "a4c3be60db3466debc0578ce557f4edb21e78b7466c7689095a6b4f6824e77ab",
-  "bytes": 1442955,
-  "archiveUrl": "https://github.com/howardjp/design-workbench/releases/download/design-v0.3.0/martlet-react-reference-0.3.0.tar.gz"
+  "archive": "martlet-react-reference-0.3.0-nav.1.tar.gz",
+  "sha256": "c31013126e3e399f6fef67f31837cbe8b41c61567bf51393a6941dd9a0f80c8e",
+  "bytes": 1443163,
+  "archiveUrl": "https://github.com/howardjp/design-workbench/releases/download/design-v0.3.0-nav.1/martlet-react-reference-0.3.0-nav.1.tar.gz"
 }
