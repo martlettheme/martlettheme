@@ -9,21 +9,30 @@
   "packages": {
     "core": {
       "name": "@martlet/theme",
-      "version": "2.2.1",
+      "version": "2.2.2",
       "published": true,
       "tag": "next"
     },
     "Astro": {
       "name": "@martlet/astro",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "published": true,
-      "tag": "next"
+      "tag": "next",
+      "install": "npm install @martlet/theme@2.2.2 @martlet/astro@1.2.2 astro"
     },
     "React": {
       "name": "@martlet/react",
       "version": "0.1.0",
       "published": false,
-      "tag": "next"
+      "tag": "next",
+      "tarball": {
+        "url": "https://github.com/howardjp/design-workbench/releases/download/react-v0.1.0/martlet-react-0.1.0.tgz",
+        "sha256": "42a501d06ef7114ed5640b52d9889998ae70ca1846e0bdfba9e1ba487c3c1a41",
+        "available": true,
+        "source": "public GitHub pre-release react-v0.1.0"
+      },
+      "install": "npm install https://github.com/howardjp/design-workbench/releases/download/react-v0.1.0/martlet-react-0.1.0.tgz react@19 react-dom@19",
+      "theme": "2.1.0"
     }
   },
   "preview": {
