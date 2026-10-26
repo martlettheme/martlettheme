@@ -24,11 +24,25 @@ const links = [
   const button = header?.querySelector<HTMLButtonElement>('.mast-toggle');
   const nav = header?.querySelector<HTMLElement>('nav');
   if (header && button && nav) {
+    const updateHeader = () => {
+      header.dataset.scrolled = String(window.scrollY >= Math.min(260, Math.max(160, innerHeight * .25)));
+    };
+    let scheduled = false;
+    const onScroll = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => { updateHeader(); scheduled = false; });
+    };
     const setMenu = (open: boolean) => {
       header.dataset.menuOpen = String(open);
       button.setAttribute('aria-expanded', String(open));
     };
     header.dataset.menuReady = 'true';
+    updateHeader();
+    requestAnimationFrame(() => { header.dataset.headerReady = 'true'; });
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', updateHeader, {passive:true});
+    window.addEventListener('hashchange', onScroll);
     button.hidden = false;
     button.addEventListener('click', () => setMenu(button.getAttribute('aria-expanded') !== 'true'));
     nav.addEventListener('click', event => {
@@ -42,6 +56,6 @@ const links = [
     });
     const media = matchMedia('(max-width:68rem), (max-aspect-ratio:4/5)');
     media.addEventListener('change', () => setMenu(false));
-    window.addEventListener('pageshow', () => setMenu(false));
+    window.addEventListener('pageshow', () => { setMenu(false); updateHeader(); });
   }
 </script>
