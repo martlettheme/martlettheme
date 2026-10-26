@@ -46,7 +46,7 @@ The site uses the owner's shared Google Analytics measurement ID `G-FSDET4HG4L`.
 
 For browser verification, run `npx playwright install chromium`, then `npm run build && npm run test:browser`. These checks intercept the Google tag and never submit real Analytics data.
 
-Owner direction on 25 October 2026 supersedes the earlier documentation masthead translation: navigation is white in light mode and uses an edge-to-edge grey band in dark mode. Content remains bounded, and each family retains its mark, typography and interaction rules. Homepage specimen appearance controls also update the navigation band. See [the documentation navigation rule](https://github.com/howardjp/design-workbench/blob/400aacb6c282a383d7915085125cd7724036b5c3/docs/documentation-navigation.md). Browser checks compare the actual Astro and React header surfaces and exercise both appearances, narrow menus, focus recovery and navigation without JavaScript.
+Owner direction restores the jameshoward.us scroll transition in both appearances: transparent over a dark hero at the top, original dark navy after the source threshold or while the mobile menu is open in light appearance. Dark appearance reverses to a lighter cream hero with dark lettering and an edge-to-edge white menu fading in. This supersedes the earlier white/grey host choice for Martlet; Krigsvold has its own inverse floating-menu rule. Browser checks compare actual Astro and React transitions, narrow menus, focus recovery and navigation without JavaScript. See the workbench's `docs/documentation-navigation.md` for authority and scope.
 
 Generated deliverables are placed in `artifacts/` and `site/public/downloads/`. Those directories are derived from `src/palettes.mjs` and should not be edited manually.
 

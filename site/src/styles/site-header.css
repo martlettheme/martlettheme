@@ -1,5 +1,4 @@
-/* Documentation host: owner-directed white/grey full-width band (25 October 2026).
-   Origin typography, marks and menu behavior remain family-specific. */
+/* Documentation host: origin scroll transition restored by owner direction. */
 html { scroll-padding-block-start:5.6rem; }
 body { padding-block-start:4.6rem; }
 .mast {
@@ -45,12 +44,27 @@ body { padding-block-start:4.6rem; }
 @media(prefers-reduced-motion:reduce) { .mast nav a::after { transition-duration:.01ms; } }
 @media print { body { padding:0; } .mast { display:none; } }
 
-/* Owner direction: white light navigation; full-width grey band in dark appearance. */
-body { --documentation-nav-bg:#fff; --documentation-nav-text:var(--martlet-color-navy-900); --documentation-nav-rule:var(--martlet-color-gold-700); --documentation-nav-border:var(--martlet-color-slate-150); }
-body:has([data-palette-mode="dark"][aria-pressed="true"]) { --documentation-nav-bg:#2e3947; --documentation-nav-text:#fff; --documentation-nav-rule:var(--martlet-color-gold-300); --documentation-nav-border:rgb(255 255 255/.13); }
+/* Match jameshoward.us in both appearances: transparent at the top, dark
+   navy after the origin threshold or while the menu is open. The plain white
+   documentation host needs dark links while its header is transparent. */
+body { --documentation-nav-bg:transparent; --documentation-nav-text:var(--martlet-color-navy-900); --documentation-nav-rule:var(--martlet-color-gold-700); --documentation-nav-border:transparent; }
+.mast:is([data-scrolled="true"],[data-menu-open="true"]) { --documentation-nav-bg:var(--martlet-color-navy-950); --documentation-nav-text:#fff; --documentation-nav-rule:var(--martlet-color-gold-300); --documentation-nav-border:rgb(255 255 255/.13); }
 .mast { background:var(--documentation-nav-bg); border-block-end-color:var(--documentation-nav-border); box-shadow:none; }
+.mast[data-header-ready="true"] { transition:background-color .5s ease,border-color .5s ease,box-shadow .5s ease; }
+.mast:is([data-scrolled="true"],[data-menu-open="true"]) { box-shadow:0 5px 24px rgb(0 0 0/.2); }
 .mast .brand,.mast nav a,.mast-toggle { color:var(--documentation-nav-text); }
 .mast-toggle { border-color:currentColor; }
 .mast nav a::after { background:var(--documentation-nav-rule); }
 .mast nav a:is([aria-current=page],:hover) { color:var(--documentation-nav-rule); }
 .mast :focus-visible { outline-color:var(--documentation-nav-text); box-shadow:0 0 0 6px var(--documentation-nav-bg); }
+@media(prefers-reduced-motion:reduce) { .mast[data-header-ready="true"] { transition-duration:.01ms; } }
+
+/* The light hero follows the origin; dark reverses hero and menu contrast. */
+body { --documentation-hero-bg:var(--martlet-color-navy-900); --documentation-hero-text:#fff; --documentation-hero-rule:var(--martlet-color-gold-300); }
+body:has([data-palette-mode="dark"][aria-pressed="true"]) { --documentation-hero-bg:var(--martlet-color-cream); --documentation-hero-text:var(--martlet-color-navy-900); --documentation-hero-rule:var(--martlet-color-gold-700); }
+body:has(.book-intro) { padding-block-start:0; --documentation-nav-text:var(--documentation-hero-text); --documentation-nav-rule:var(--documentation-hero-rule); }
+body:has(.book-intro) .mast[data-menu-ready="true"] { position:fixed; }
+body .book-intro { padding:9rem max(var(--martlet-gutter),calc((100% - var(--martlet-content-width))/2)) 4rem; background:var(--documentation-hero-bg); color:var(--documentation-hero-text); }
+body .book-intro :is(h1,p,a,.intro-links>span) { color:var(--documentation-hero-text); }
+body .book-title h1 span { color:var(--documentation-hero-rule); }
+body:has([data-palette-mode="dark"][aria-pressed="true"]) .mast:is([data-scrolled="true"],[data-menu-open="true"]) { --documentation-nav-bg:#fff; --documentation-nav-text:var(--martlet-color-navy-900); --documentation-nav-rule:var(--martlet-color-gold-700); --documentation-nav-border:var(--martlet-color-slate-150); }
