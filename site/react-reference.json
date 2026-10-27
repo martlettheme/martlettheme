@@ -4,12 +4,12 @@
     "version": "0.3.0",
     "stage": "preview"
   },
-  "artifactVersion": "0.3.0-source.2",
-  "sourceCommit": "cd1af7d920b2cbe5ed2dea66271012fcc859b9cc",
-  "base": "/react/",
+  "artifactVersion": "0.3.0-adoption.2",
+  "sourceCommit": "39d664082bb0dbdb09bc182a6abffebef75518ff",
+  "base": "/",
   "readOnlyReference": true,
-  "archive": "martlet-react-reference-0.3.0-source.2.tar.gz",
-  "sha256": "9f8d4899c155ed8c98794035f0de329b47b6e81f976b7f8bf41e5f8644b5e1cd",
-  "bytes": 1459192,
-  "archiveUrl": "https://github.com/k3jph/design-workbench/releases/download/design-v0.3.0-source.2/martlet-react-reference-0.3.0-source.2.tar.gz"
+  "archive": "martlet-react-reference-0.3.0-adoption.2.tar.gz",
+  "sha256": "9dd6063ed72eddbe1d978863d811233fbc264e346bff7ef354c592165a5a3652",
+  "bytes": 1693964,
+  "archiveUrl": "https://github.com/k3jph/design-workbench/releases/download/design-v0.3.0-adoption.2/martlet-react-reference-0.3.0-adoption.2.tar.gz"
 }
