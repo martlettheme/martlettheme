@@ -4,12 +4,12 @@
     "version": "0.3.0",
     "stage": "preview"
   },
-  "artifactVersion": "0.3.0-sha.a6d42669a28f341977e11468c34da90c27b882ba",
-  "sourceCommit": "a6d42669a28f341977e11468c34da90c27b882ba",
+  "artifactVersion": "0.3.0-sha.e218dd006b77287eb58ed8ede93d8d78af62e477",
+  "sourceCommit": "e218dd006b77287eb58ed8ede93d8d78af62e477",
   "base": "/",
   "readOnlyReference": true,
-  "archive": "martlet-react-reference-0.3.0-sha.a6d42669a28f341977e11468c34da90c27b882ba.tar.gz",
-  "sha256": "7e5a0af521d7f4d744f6bd03256cbfb3b5439d60abd3cccfa9885c7ff58a2371",
-  "bytes": 1467686,
-  "archiveUrl": "https://github.com/k3jph/design-workbench/releases/download/design-v0.3.0-sha.a6d42669a28f341977e11468c34da90c27b882ba/martlet-react-reference-0.3.0-sha.a6d42669a28f341977e11468c34da90c27b882ba.tar.gz"
+  "archive": "martlet-react-reference-0.3.0-sha.e218dd006b77287eb58ed8ede93d8d78af62e477.tar.gz",
+  "sha256": "b5e53cbdc84f9e4ae8754bef52865459a24778bb7af16f4503062eb9b4073616",
+  "bytes": 1467744,
+  "archiveUrl": "https://github.com/k3jph/design-workbench/releases/download/design-v0.3.0-sha.e218dd006b77287eb58ed8ede93d8d78af62e477/martlet-react-reference-0.3.0-sha.e218dd006b77287eb58ed8ede93d8d78af62e477.tar.gz"
 }
