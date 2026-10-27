@@ -12,7 +12,7 @@
 .site-footer .footer-identity { display:flex; align-items:center; gap:1rem; min-inline-size:0; text-decoration:none; }
 .footer-identity img { inline-size:3.5rem; block-size:auto; flex:none; }
 .footer-identity strong { color:#fff; font-family:var(--martlet-font-display); font-size:1rem; }
-.footer-bottom p { margin-block:0 1.5rem; }
+.footer-bottom p { margin-block:1em; }
 .site-footer :focus-visible { outline-color:#fff; }
 @media(max-width:44rem) {
   .site-footer .footer-grid { grid-template-columns:minmax(0,1fr); }
