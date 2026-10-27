@@ -65,6 +65,9 @@ try {
     assert.ok(heading.family.includes('Cambo'));
     assert.equal(heading.weight,'400');
     assert.ok(Math.abs(parseFloat(heading.leading)-17.3696)<.05);
+    const centers=await page.locator('.footer-bottom').evaluate(e=>Array.from(e.children).map(child=>{const r=child.getBoundingClientRect();return r.top+r.height/2;}));
+    assert.ok(Math.abs(centers[0]-centers[1])<1,'Copyright and identity must share the source vertical center');
+
   });
   await scenario('no decision loads no external services or cookies',async({page,context,requests})=>{
     assert.equal(await page.locator('#cookie-banner').isVisible(),true);
