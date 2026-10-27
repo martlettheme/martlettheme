@@ -1,0 +1,11 @@
+/* Origin ordinary links: jameshoward.us/src/styles/global.css.
+   Scoped to this documentation host; nested dark specimens retain their tokens. */
+body.martlet:not([data-martlet="dark"]) { --martlet-link-hover:var(--martlet-color-gold-700); }
+body.martlet .source-link:hover { color:var(--martlet-link-hover); }
+/* Source filled hero action: lighten its surface, preserving dark text. */
+body.martlet .terminal-download-links a:hover { background:white; color:var(--martlet-color-navy-950); }
+body.martlet a { transition:color .2s ease; }
+/* Origin home-text-link keeps its hero color and moves the arrow. */
+.book-intro .intro-links a > span { display:inline-block; transition:transform .2s ease; }
+.book-intro .intro-links a:hover > span { transform:translateX(.25rem); }
+@media(prefers-reduced-motion:reduce) { body.martlet a,.book-intro .intro-links a > span { transition:none; } }

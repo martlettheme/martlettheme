@@ -61,7 +61,20 @@ async function scenario(name, run, { cookie, gpc=false, javaScriptEnabled=true }
 }
 
 try {
-  await scenario('footer typography follows the rendered origin cascade',async({page})=>{
+  await scenario('origin link hover and footer treatment', async ({page}) => {
+  await page.goto(base+'/');
+  const source=page.locator('.source-link');
+  await source.hover();
+  await page.waitForFunction(() => getComputedStyle(document.querySelector('.source-link')).color === 'rgb(128, 85, 15)');
+  const action=page.locator('.terminal-download-links a').first();
+  await action.hover();
+  assert.equal(await action.evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');
+  const footer=page.locator('footer').getByRole('link',{name:'React reference',exact:true});
+  await footer.hover();
+  assert.equal(await footer.evaluate(e=>getComputedStyle(e).textDecorationLine),'underline');
+});
+
+await scenario('footer typography follows the rendered origin cascade',async({page})=>{
     const heading=await page.locator('footer h2').first().evaluate(e=>{
       const s=getComputedStyle(e);return {family:s.fontFamily,weight:s.fontWeight,size:s.fontSize,leading:s.lineHeight};
     });
