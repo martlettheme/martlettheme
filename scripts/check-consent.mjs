@@ -10,7 +10,7 @@ import { resolve, extname, sep } from 'node:path';
 
 const root = resolve('dist');
 const types = { '.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.png':'image/png', '.ico':'image/x-icon', '.woff2':'font/woff2', '.webmanifest':'application/manifest+json' };
-const server = createServer(async (req, res) => {
+const serve = root => createServer(async (req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     const path = resolve(root, '.' + pathname + (pathname.endsWith('/') ? 'index.html' : ''));
@@ -20,7 +20,10 @@ const server = createServer(async (req, res) => {
     res.end(content);
   } catch { res.writeHead(404).end(); }
 });
+const server=serve(root), reactServer=serve(resolve('dist/react'));
 await new Promise(done => server.listen(0, '127.0.0.1', done));
+await new Promise(done => reactServer.listen(0, '127.0.0.1', done));
+const reactBase=`http://127.0.0.1:${reactServer.address().port}`;
 const base = `http://127.0.0.1:${server.address().port}`;
 const id = 'G-FSDET4HG4L';
 const tagUrl = `https://www.googletagmanager.com/gtag/js?id=${id}`;
@@ -37,7 +40,7 @@ async function scenario(name, run, { cookie, gpc=false, javaScriptEnabled=true }
   const requests=[], errors=[];
   await context.route('**/*', async route => {
     const url=route.request().url();
-    if (url.startsWith(base+'/')) return route.continue();
+    if (url.startsWith(base+'/') || url.startsWith(reactBase+'/')) return route.continue();
     requests.push(url);
     if (url===tagUrl) return route.fulfill({contentType:'application/javascript',body:'window.__testTagLoaded=true;'});
     return route.abort();
@@ -328,9 +331,12 @@ try {
   await scenario('0.3 design home and public React reference preserve the language and local assets',async({page})=>{
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://martletdesign.dev/');
     assert.ok((await page.locator('main').innerText()).includes('0.3 preview'));
-    await page.goto(base+'/react/');assert.equal(await page.locator('main h1').count(),1);
-    const metadata=await (await page.request.get(base+'/react/preview.json')).json();assert.equal(metadata.family,'martlet');assert.equal(metadata.preview.version,'0.3.0');
-    await page.goto(base+'/react/?page=agents');assert.equal(await page.locator('main h1').count(),1);
+    await page.goto(reactBase+'/');assert.equal(await page.locator('main h1').count(),1);
+    for(const name of ['martlet-builder.zip','martlet-agent-tools.tar.gz']) {
+      assert.deepEqual(await (await page.request.get(base+'/agents/'+name)).body(),await (await page.request.get(reactBase+'/agents/'+name)).body(),'Both download locations must expose the same current agent archive');
+    }
+    const metadata=await (await page.request.get(reactBase+'/preview.json')).json();assert.equal(metadata.family,'martlet');assert.equal(metadata.preview.version,'0.3.0');
+    await page.goto(reactBase+'/?page=agents');assert.equal(await page.locator('main h1').count(),1);
     assert.equal(await page.getByRole('textbox',{name:'Copyable example source'}).first().inputValue(),'https://martletdesign.dev/mcp');
     await page.setViewportSize({width:320,height:900});await page.addStyleTag({content:'html{font-size:200% !important}'});
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Public React reference reflows with enlarged text');
@@ -355,13 +361,13 @@ try {
     const astro=await inspect('.mast','.mast .brand','.mast nav a','.mast nav');
     assert.equal(await page.locator('.brand').innerText(),'Martlet Design');
     const astroMark=await (await page.request.get(base+'/martlet-mark.svg')).body();
-    await page.goto(base+'/react/');
+    await page.goto(reactBase+'/');
     await page.evaluate(()=>document.fonts.ready);
     const react=await inspect('.martlet-app-header','.martlet-reference-brand','.martlet-app-header nav a','.martlet-reference-navigation-links');
     assert.deepEqual(astro,react,'The same Martlet header object must retain its visual rules across renderers');
     const reactMark=await page.locator('.martlet-reference-brand img').getAttribute('src');
     assert.deepEqual(await (await page.request.get(new URL(reactMark,page.url()).href)).body(),astroMark,'Use the same original mark');
-    await page.goto(base+'/react/?page=language&mode=light');
+    await page.goto(reactBase+'/?page=language&mode=light');
     const current=await page.locator('.martlet-app-header nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor}));
     await page.goto(base+'/design-language/');
     assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The language');
@@ -408,7 +414,7 @@ try {
     for(const mode of ['light','dark']) {
       const solid=mode==='light'?'rgb(7, 17, 31)':'rgb(255, 255, 255)';
       const heroBg=mode==='light'?'rgb(11, 28, 51)':'rgb(248, 244, 233)';
-      await page.goto(base+'/react/?mode='+mode);
+      await page.goto(reactBase+'/?mode='+mode);
       assert.equal(await page.locator('.martlet-reference-intro').evaluate(e=>getComputedStyle(e).backgroundColor),heroBg);
       await page.waitForFunction(()=>getComputedStyle(document.querySelector('.martlet-app-header')).backgroundColor==='rgba(0, 0, 0, 0)');
       await page.evaluate(()=>window.scrollTo({top:300,behavior:'instant'}));
@@ -424,9 +430,22 @@ try {
       assert.deepEqual(await page.locator('.mast').evaluate(e=>({background:getComputedStyle(e).backgroundColor,color:getComputedStyle(e.querySelector('.brand')).color})),react);
     }
   });
+  await scenario('React footer owner identity and provenance match the master site',async({page})=>{
+    const owner=await page.locator('footer a[aria-label="James Howard website"]').innerText();
+    const icon=await page.locator('footer a[aria-label="James Howard website"] img').getAttribute('src');
+    const bytes=await (await page.request.get(new URL(icon,page.url()).href)).body();
+    const masterText=await page.locator('footer').innerText();
+    await page.goto(reactBase+'/');
+    assert.equal(await page.locator('footer a[aria-label="James Howard website"]').innerText(),owner);
+    const reactIcon=await page.locator('footer a[aria-label="James Howard website"] img').getAttribute('src');
+    assert.deepEqual(await (await page.request.get(new URL(reactIcon,page.url()).href)).body(),bytes);
+    assert.equal(await page.locator('footer').innerText(),masterText);
+    assert.equal(await page.getByRole('link',{name:'React reference',exact:true}).getAttribute('href'),'https://react.martletdesign.dev/');
+  });
   console.log(`${results.length} browser scenarios passed. Google requests were intercepted.`);
 } finally {
   await browser.close();
   await new Promise(done=>server.close(done));
+  await new Promise(done=>reactServer.close(done));
 }
 
