@@ -61,6 +61,14 @@ async function scenario(name, run, { cookie, gpc=false, javaScriptEnabled=true }
 }
 
 try {
+  await scenario('navigation and footer identity refinements', async ({page}) => {
+    assert.equal(await page.locator('.mast nav').getByRole('link',{name:'The Language',exact:true}).count(),1);
+    await page.locator('#cookie-banner [data-cookie-reject]').click();
+    const owner=page.locator('.site-footer .footer-identity');
+    await owner.hover();
+    assert.equal(await owner.evaluate(e=>getComputedStyle(e).textDecorationLine),'none');
+  });
+
   await scenario('origin link hover and footer treatment', async ({page}) => {
   await page.goto(base+'/');
   const source=page.locator('.source-link');
@@ -383,7 +391,7 @@ await scenario('footer typography follows the rendered origin cascade',async({pa
     await page.goto(reactBase+'/?page=language&mode=light');
     const current=await page.locator('.martlet-app-header nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor}));
     await page.goto(base+'/design-language/');
-    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The language');
+    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The Language');
     assert.deepEqual(await page.locator('.mast nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor})),current);
     for(const width of [1080,768,320]) {
       await page.setViewportSize({width,height:900});
@@ -420,7 +428,7 @@ await scenario('footer typography follows the rendered origin cascade',async({pa
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.locator('.mast nav a[href="/design-language/"]').click();
     await page.waitForURL(base+'/design-language/');
-    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The language');
+    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The Language');
   },{javaScriptEnabled:false});
   await scenario('Martlet origin fade reverses with the hero in dark appearance',async({page})=>{
     await page.locator('#cookie-banner [data-cookie-reject]').click();
