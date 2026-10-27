@@ -58,6 +58,14 @@ async function scenario(name, run, { cookie, gpc=false, javaScriptEnabled=true }
 }
 
 try {
+  await scenario('footer typography follows the rendered origin cascade',async({page})=>{
+    const heading=await page.locator('footer h2').first().evaluate(e=>{
+      const s=getComputedStyle(e);return {family:s.fontFamily,weight:s.fontWeight,size:s.fontSize,leading:s.lineHeight};
+    });
+    assert.ok(heading.family.includes('Cambo'));
+    assert.equal(heading.weight,'400');
+    assert.ok(Math.abs(parseFloat(heading.leading)-17.3696)<.05);
+  });
   await scenario('no decision loads no external services or cookies',async({page,context,requests})=>{
     assert.equal(await page.locator('#cookie-banner').isVisible(),true);
     assert.deepEqual(requests,[]);
