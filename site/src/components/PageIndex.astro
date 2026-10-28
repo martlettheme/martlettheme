@@ -1,5 +1,4 @@
 ---
-import '../styles/origin/document-pages.css';
 const { headings = [], maxDepth = 3, exclude = [] } = Astro.props;
 const links = headings.filter((heading: any) =>
   heading.depth >= 2 && heading.depth <= maxDepth && !exclude.includes(heading.slug)
