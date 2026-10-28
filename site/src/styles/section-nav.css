@@ -1,0 +1,5 @@
+
+  .section-nav { padding-block: 1rem; background: var(--color-cream); }
+  .section-nav ul { display: flex; flex-wrap: wrap; gap: .4rem 1.75rem; margin: 0; padding: 0; list-style: none; font: 700 .88rem/1.5 var(--font-sans); }
+  .section-nav a { display: inline-block; padding-block: .35rem; color: var(--color-navy-900); text-decoration-color: var(--color-gold-500); }
+  .section-nav a:hover { color: var(--color-gold-700); }

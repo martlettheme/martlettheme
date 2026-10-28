@@ -39,3 +39,18 @@ html[data-appearance="dark"] body .site-header nav a::after { background:var(--c
 @media(min-width:68.01rem) and (min-aspect-ratio:4/5) { html[data-appearance="dark"] body .site-header nav { background:transparent; } }
 @media print { .site-header,.site-footer,.page-index { display:none; } .page-intro,.page-intro__shade { background:white!important; min-height:0!important; padding:1rem 0!important; } .page-intro :is(h1,p,a) { color:black!important; } .document-layout { display:block; } }
 html[data-appearance="dark"] body .site-header .menu-button { border-color:currentColor; }
+
+/* Documentation previews own their surface and text, independently of the shell. */
+body .theme-specimen :is(h2,h3,h4) { color:var(--martlet-text); }
+body .theme-specimen :is(code,pre) { color:inherit; }
+body .terminal-download h4 { color:inherit; }
+body .terminal-download { color:#f3f7ff; }
+body .terminal-download h4 { font-size:1.75rem; margin:0 0 1rem; }
+
+/* The canvas follows page appearance; each nested preview retains its own palette. */
+body .specimen-book { background:var(--martlet-bg); color:var(--martlet-text); }
+html[data-appearance="dark"] .origin-story { color:var(--martlet-text); }
+html[data-appearance="dark"] :is(.content,.design-reference) blockquote { color:var(--martlet-muted); }
+/* Contents labels retain contrast on cream and dark surfaces. */
+:is(.toc,.page-index) .eyebrow { color:var(--color-gold-700); }
+html[data-appearance="dark"] .page-index .eyebrow { color:var(--color-gold-300); }
