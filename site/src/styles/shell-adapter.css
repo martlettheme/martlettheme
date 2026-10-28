@@ -1,0 +1,41 @@
+/* Host adaptations to the verbatim jameshoward.us shell. See docs/source-shell/README.md. */
+.site-header .brand { gap:.75rem; font:600 1rem/1.4 var(--font-display); }
+html body .site-header.mast .brand img { width:42px; height:42px; }
+.appearance-toggle { padding:.4rem .5rem; width:auto; min-height:2.75rem; color:inherit; background:transparent; border:1px solid currentColor; font:700 .86rem/1.5 var(--font-sans); cursor:pointer; }
+.site-header .appearance-toggle { color:var(--color-cream); }
+/* Preserve content width; documentation tables and snippets scroll independently. */
+body .design-reference { max-inline-size:none; margin:0; padding:0; background:transparent; color:inherit; }
+body .privacy-page { padding-inline:0; }
+.document-reading { overflow-wrap:anywhere; }
+.page-intro .masthead-description { max-width:48rem; }
+.page-intro .masthead-description p,.page-intro .masthead-metadata p { font:inherit; line-height:1.6; }
+.page-intro .masthead-metadata { margin-top:1.5rem; font:.88rem/1.5 var(--font-sans); }
+.page-intro .masthead-actions { display:flex; flex-wrap:wrap; gap:1rem 2rem; margin-top:1.5rem; font:700 .94rem/1.5 var(--font-sans); }
+.page-intro :is(a,code) { color:inherit; }
+.page-intro a:hover { color:var(--color-gold-300); }
+.page-intro .masthead-tags:empty,.masthead-metadata:empty { display:none; }
+/* Source no-JS repair: destinations remain reachable before enhancement. */
+@media(max-width:68rem),(max-aspect-ratio:4/5) {
+ .site-header:not([data-navigation-ready]) { position:relative; background:var(--color-navy-950); }
+ .site-header:not([data-navigation-ready]) .header-inner { display:block; padding-block:1rem; }
+ .site-header:not([data-navigation-ready]) nav { display:block; position:static; box-shadow:none; }
+ .site-header:not([data-navigation-ready]) .menu-button { display:none; }
+}
+/* Explicit new capability: inverse masthead and readable dark documentation. */
+html[data-appearance="dark"] { color-scheme:dark; }
+html[data-appearance="dark"] body { color:var(--martlet-color-slate-075); background:var(--martlet-color-navy-950); }
+html[data-appearance="dark"] :is(.design-reference,.privacy-page) { --martlet-text:var(--martlet-color-slate-075); --martlet-bg:var(--martlet-color-navy-950); --martlet-muted:var(--martlet-color-slate-300); --martlet-link:var(--martlet-color-gold-300); --martlet-panel2:var(--martlet-color-navy-800); --martlet-line:var(--martlet-color-slate-700); }
+html[data-appearance="dark"] :is(.design-reference,.privacy-page) :is(h1,h2,h3,h4,th) { color:var(--martlet-color-slate-075); }
+html[data-appearance="dark"] :is(.design-reference,.privacy-page,.page-index) a { color:var(--martlet-color-gold-300); }
+html[data-appearance="dark"] .page-index { background:transparent; }
+html[data-appearance="dark"] body .page-intro { background-color:var(--color-cream); background-image:none; }
+html[data-appearance="dark"] body .page-intro__shade { background:transparent; }
+html[data-appearance="dark"] body .page-intro :is(h1,p,a,code),html[data-appearance="dark"] body .page-intro__content { color:var(--color-navy-900)!important; }
+html[data-appearance="dark"] body .page-intro .eyebrow { color:var(--color-gold-700); }
+html[data-appearance="dark"] body .page-intro__content::after { background:var(--color-gold-700); }
+html[data-appearance="dark"] body .site-header :is(.brand,nav a,.menu-button,.appearance-toggle) { color:var(--color-navy-900); }
+html[data-appearance="dark"] body .site-header:is(.is-scrolled,.is-menu-open),html[data-appearance="dark"] body .site-header nav { background:var(--color-cream); }
+html[data-appearance="dark"] body .site-header nav a::after { background:var(--color-gold-700); }
+@media(min-width:68.01rem) and (min-aspect-ratio:4/5) { html[data-appearance="dark"] body .site-header nav { background:transparent; } }
+@media print { .site-header,.site-footer,.page-index { display:none; } .page-intro,.page-intro__shade { background:white!important; min-height:0!important; padding:1rem 0!important; } .page-intro :is(h1,p,a) { color:black!important; } .document-layout { display:block; } }
+html[data-appearance="dark"] body .site-header .menu-button { border-color:currentColor; }

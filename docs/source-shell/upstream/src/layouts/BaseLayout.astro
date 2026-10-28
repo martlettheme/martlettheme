@@ -1,0 +1,24 @@
+---
+import MartletLayout from '@martlet/astro/Layout.astro';
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import '../styles/content.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { SITE, absoluteUrl, normalizeAssetPath } from '../lib/site';
+interface Props { title?: string; description?: string; image?: string; canonical?: string; type?: string; noindex?: boolean; stylesheet?: string; script?: string; profilePage?: boolean }
+const { title=SITE.title, description=SITE.description, image=SITE.socialImage, canonical=Astro.url.pathname, type='website', noindex=false, stylesheet, script, profilePage=false }=Astro.props;
+const fullTitle=title==='Home'||title===SITE.title?SITE.title:`${title} | ${SITE.title}`;
+const canonicalUrl=absoluteUrl(canonical);
+const socialImage=absoluteUrl(normalizeAssetPath(image));
+const rawDescription=description?.trim()||SITE.description;
+const effectiveDescription=rawDescription.length<=240?rawDescription:`${rawDescription.slice(0,236).replace(/\s+\S*$/,'')}…`;
+---
+<MartletLayout title={fullTitle} description={effectiveDescription}>
+  <Fragment slot="head"><link rel="canonical" href={canonicalUrl}><link rel="icon" href="/assets/img/identity/favicon.svg"><link rel="alternate" type="application/rss+xml" title="James Howard" href="/feed.xml"><link rel="stylesheet" href="/assets/css/ukraine.css?v=20260927-1" data-ukraine-banner><meta property="og:type" content={type}><meta property="og:title" content={fullTitle}><meta property="og:description" content={effectiveDescription}><meta property="og:url" content={canonicalUrl}><meta property="og:image" content={socialImage}><meta name="twitter:card" content="summary_large_image">{noindex&&<meta name="robots" content="noindex">}{stylesheet&&<link rel="stylesheet" href={stylesheet}>}<slot name="head" />{profilePage&&<script is:inline type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'Person',name:SITE.name,url:SITE.url})}/>}</Fragment>
+  <SiteHeader slot="header"/>
+  <slot/>
+  <Fragment slot="footer"><SiteFooter/><CookieConsent/></Fragment>
+  <Fragment slot="body-end"><script is:inline src="/assets/js/ukraine.js?v=20260922-2" defer></script><script is:inline src="/assets/seasonal/js/seasonal.js" defer></script>{script&&<script is:inline src={script} defer></script>}<slot name="scripts" /></Fragment>
+</MartletLayout>

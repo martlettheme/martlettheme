@@ -1,0 +1,113 @@
+{
+  "source": "k3jph/k3jph.github.io",
+  "commit": "cdf0ab30f269085a289f8f91e467103c07ca44cb",
+  "sourcePage": "https://jameshoward.us/about-me/",
+  "comparedPage": "/design-language/",
+  "scope": "Computed geometry and typography only; content, identity and optional imagery intentionally differ. Source capture excludes tracking and seasonal scripts.",
+  "viewports": {
+    "768": {
+      ".header-inner": {
+        "width": 721.90625,
+        "font": "Lato, \"Helvetica Neue\", Arial, sans-serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "flex",
+        "columns": "none"
+      },
+      ".page-intro__shade": {
+        "width": 768,
+        "font": "Cambo, Georgia, serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "128px",
+        "paddingBottom": "48px",
+        "display": "grid",
+        "columns": "768px"
+      },
+      ".page-intro h1": {
+        "width": 721.90625,
+        "font": "Cambo, Georgia, serif",
+        "size": "42.24px",
+        "lineHeight": "45.6192px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "block",
+        "columns": "none"
+      },
+      ".document-layout": {
+        "width": 721.90625,
+        "font": "Cambo, Georgia, serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "block",
+        "columns": "256px minmax(0px, 768px)"
+      },
+      ".page-index": {
+        "width": 721.90625,
+        "font": "Lato, \"Helvetica Neue\", Arial, sans-serif",
+        "size": "14.08px",
+        "lineHeight": "21.12px",
+        "paddingTop": "19.2px",
+        "paddingBottom": "19.2px",
+        "display": "block",
+        "columns": "none"
+      }
+    },
+    "1440": {
+      ".header-inner": {
+        "width": 1248,
+        "font": "Lato, \"Helvetica Neue\", Arial, sans-serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "flex",
+        "columns": "none"
+      },
+      ".page-intro__shade": {
+        "width": 1440,
+        "font": "Cambo, Georgia, serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "172.8px",
+        "paddingBottom": "80px",
+        "display": "grid",
+        "columns": "1440px"
+      },
+      ".page-intro h1": {
+        "width": 1056,
+        "font": "Cambo, Georgia, serif",
+        "size": "79.2px",
+        "lineHeight": "85.536px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "block",
+        "columns": "none"
+      },
+      ".document-layout": {
+        "width": 1248,
+        "font": "Cambo, Georgia, serif",
+        "size": "17.2px",
+        "lineHeight": "29.584px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "display": "grid",
+        "columns": "256px 768px"
+      },
+      ".page-index": {
+        "width": 256,
+        "font": "Lato, \"Helvetica Neue\", Arial, sans-serif",
+        "size": "14.08px",
+        "lineHeight": "21.12px",
+        "paddingTop": "19.2px",
+        "paddingBottom": "8px",
+        "display": "block",
+        "columns": "none"
+      }
+    }
+  }
+}

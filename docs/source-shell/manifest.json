@@ -1,0 +1,25 @@
+{
+  "repository": "k3jph/k3jph.github.io",
+  "commit": "cdf0ab30f269085a289f8f91e467103c07ca44cb",
+  "files": {
+    "src/layouts/BaseLayout.astro": "2ec43952152411e53c77d1a8cf7b4651898f1f33f67b10d22c1208df18221e2a",
+    "src/components/SiteHeader.astro": "0394e95b33cd94cf2557ac79f388a8d790a22a43b4267cfd9923dced558d4777",
+    "src/components/SiteFooter.astro": "f0a33db53839c043e5a5a0c83dfa5c675b8cb7fec4ca3a33162d20c52a2db3f8",
+    "src/components/PageIntro.astro": "f5705a0a729fbac0bfad7768fbba63fbbd7293da84bdb3cccb34a9d371cbea5a",
+    "src/components/PageIndex.astro": "1893d20e4683c62ed3859f8eb1ce9dc3f9067a3bf69f60ab2b0c5b1e0a747182",
+    "src/components/SectionNav.astro": "98488a19c8c84a137da9d0efb1b7829e56e2b57bae541d0e26ee6fd78d8700d4",
+    "src/components/TableOfContents.astro": "02284ca58f1c3d3ad234c030a463f8360518bf9da1c075790069e91692fcf2a1",
+    "src/styles/global.css": "47f1413ee39dc81b20eca18b86cadcda18ef1d119f91447f250d1304fd6b518d",
+    "src/styles/tokens.css": "a809b4ce652d2470120abe96eb9462cf26ad9897041b03ab595c576f998a2e2a",
+    "src/styles/content.css": "eb9775a2a42835c649d544a1511c9d89c315f16cab18a86ae3785964acfad7ee",
+    "src/styles/document-pages.css": "17facdbeb874f004b2f98baa7ae0847363d79131be1fe17c8b13110d27ff9a9e"
+  },
+  "sourcePackages": {
+    "@martlet/theme": "2.0.0",
+    "@martlet/astro": "1.0.0"
+  },
+  "hostPackages": {
+    "@martlet/astro": "1.2.2",
+    "@martlet/theme": "2.2.2"
+  }
+}
