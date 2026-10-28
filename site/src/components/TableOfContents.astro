@@ -3,4 +3,4 @@ const { headings=[] } = Astro.props;
 const shown = headings.filter((h:any)=>h.depth>=2&&h.depth<=3);
 ---
 {shown.length>1 && <nav class="toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol>{shown.map((h:any)=><li class={`depth-${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>}
-<style>.toc{margin:0 auto 2.5rem;padding:1.2rem 1.4rem;border-left:0;background:var(--color-cream);font-family:var(--font-sans)}.toc ol{margin:.5rem 0 0;padding-left:1.25rem}.toc .depth-3{margin-left:1rem}</style>
+
