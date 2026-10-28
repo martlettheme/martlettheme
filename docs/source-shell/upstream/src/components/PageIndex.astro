@@ -1,0 +1,11 @@
+---
+import '../styles/document-pages.css';
+const { headings = [], maxDepth = 3, exclude = [] } = Astro.props;
+const links = headings.filter((heading: any) =>
+  heading.depth >= 2 && heading.depth <= maxDepth && !exclude.includes(heading.slug)
+);
+---
+<nav class="page-index" aria-label="On this page">
+  <p class="eyebrow">On this page</p>
+  <ul>{links.map((heading: any) => <li class:list={{ 'page-index__section': heading.depth === 2 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul>
+</nav>

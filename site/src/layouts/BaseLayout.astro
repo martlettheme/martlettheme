@@ -3,14 +3,21 @@ import MartletLayout from '@martlet/astro/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import Appearance from '../components/Appearance.astro';
 import '../styles/global.css';
 import '../styles/link-behavior.css';
+
 import '../styles/site-chrome.css';
+import '../styles/origin/global.css';
+import '../styles/origin/content.css';
+import '../styles/origin/document-pages.css';
+import '../styles/shell-adapter.css';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const { title = 'Martlet · Design language 0.3 preview', description = 'Martlet Light and Dark, an independent design language for publishing, services, and applications, with components, patterns and agent tools.' } = Astro.props;
 ---
 <MartletLayout title={title} description={description} mainId="main" mainTabindex={-1}>
   <Fragment slot="head">
+  <script is:inline>try { document.documentElement.dataset.appearance = localStorage.getItem("design-appearance") === "dark" ? "dark" : "light"; } catch {}</script>
   <link rel="canonical" href={canonical} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -22,6 +29,6 @@ const { title = 'Martlet · Design language 0.3 preview', description = 'Martlet
   <link rel="manifest" href="/site.webmanifest" />
 </Fragment>
   <SiteHeader slot="header" />
-  <slot />
+  <slot /><Appearance />
   <Fragment slot="footer"><SiteFooter /><CookieConsent /></Fragment>
 </MartletLayout>

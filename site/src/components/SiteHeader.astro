@@ -1,31 +1,33 @@
 ---
-import '../styles/site-header.css';
-const links = [
-  ['/design-language/', 'The Language'],
-  ['https://react.martletdesign.dev/', 'React'],
-  ['/#palette', 'Colors'],
-  ['/#downloads', 'Downloads'],
-  ['/design-system/', 'Astro & Foundations'],
-  ['/agents/', 'Agent Tools'],
-  ['https://github.com/martlettheme/martlettheme', 'GitHub ↗'],
-];
+const links=[['/design-language/','The Language'],['https://react.martletdesign.dev/','React'],['/#palette','Colors'],['/#downloads','Downloads'],['/design-system/','Astro & Foundations'],['/agents/','Agent Tools'],['https://github.com/martlettheme/martlettheme','GitHub ↗']];
+const siteData={settings:{main_menu_settings:{menu_items:links.map(([url,title])=>({url,title}))}}};
+const sitePath=(url:string)=>url;
+const current=Astro.url.pathname;
+const isExactCurrent=(url:string)=>current===url;
+const isActiveSection=isExactCurrent;
 ---
-<header class="mast" data-site-header>
-  <div class="mast-identity">
-    <a class="brand" href="/"><img class="brand-mark" src="/martlet-mark.svg" width="42" height="42" alt="" /><span>Martlet Design</span></a>
-    <button class="mast-toggle" type="button" aria-expanded="false" aria-controls="martlet-site-navigation" hidden>Menu</button>
+<header class="site-header mast" data-site-header>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Martlet Design home"><img src="/martlet-mark.svg" alt="" width="42" height="42"><span>Martlet Design</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <ul>{siteData.settings.main_menu_settings.menu_items.map((item: any) => <li><a href={sitePath(item.url)} class:list={{'is-active-section':isActiveSection(item.url)}} aria-current={isExactCurrent(item.url) ? 'page' : undefined}>{item.title}</a></li>)}<li><button class="appearance-toggle" type="button" aria-pressed="false" data-appearance-toggle>Dark mode</button></li></ul>
+    </nav>
   </div>
-  <nav id="martlet-site-navigation" aria-label="Sections">
-    {links.map(([href, label]) => <a href={href} aria-current={href === Astro.url.pathname ? 'page' : undefined}>{label}</a>)}
-  </nav>
 </header>
-<script>
-  const header = document.querySelector<HTMLElement>('[data-site-header]');
-  const button = header?.querySelector<HTMLButtonElement>('.mast-toggle');
-  const nav = header?.querySelector<HTMLElement>('nav');
-  if (header && button && nav) {
-    const updateHeader = () => {
-      header.dataset.scrolled = String(window.scrollY >= Math.min(260, Math.max(160, innerHeight * .25)));
+<script is:inline>
+  (() => {
+    const header = document.querySelector('[data-site-header]');
+    const button = header?.querySelector('.menu-button');
+    const navigation = header?.querySelector('#site-nav');
+    if (!header || !button || !navigation) return;
+
+    const threshold = () => Math.min(260, Math.max(160, window.innerHeight * .25));
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY >= threshold());
+    const setMenu = (open) => {
+      button.setAttribute('aria-expanded', String(open));
+      navigation.classList.toggle('is-open', open);
+      header.classList.toggle('is-menu-open', open);
     };
     let scheduled = false;
     const onScroll = () => {
@@ -33,29 +35,34 @@ const links = [
       scheduled = true;
       requestAnimationFrame(() => { updateHeader(); scheduled = false; });
     };
-    const setMenu = (open: boolean) => {
-      header.dataset.menuOpen = String(open);
-      button.setAttribute('aria-expanded', String(open));
-    };
-    header.dataset.menuReady = 'true';
+
+    header.setAttribute('data-navigation-ready','');
     updateHeader();
-    requestAnimationFrame(() => { header.dataset.headerReady = 'true'; });
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', updateHeader, {passive:true});
-    window.addEventListener('hashchange', onScroll);
-    button.hidden = false;
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', updateHeader, { passive: true });
+    const finishInitialState = () => {
+      setMenu(false);
+      updateHeader();
+      requestAnimationFrame(() => header.classList.add('is-ready'));
+    };
+    // pageshow also fires when a page returns from the back-forward cache, so
+    // keep this listener for the lifetime of the document.
+    addEventListener('pageshow', finishInitialState);
+    addEventListener('load', finishInitialState, { once: true });
+    addEventListener('hashchange', () => requestAnimationFrame(updateHeader));
+
     button.addEventListener('click', () => setMenu(button.getAttribute('aria-expanded') !== 'true'));
-    nav.addEventListener('click', event => {
-      if (event.target instanceof Element && event.target.closest('a')) setMenu(false);
+    navigation.addEventListener('click', (event) => { if (event.target instanceof Element && event.target.closest('a')) setMenu(false); });
+    addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
+      setMenu(false);
+      button.focus();
     });
-    window.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
-        setMenu(false);
-        button.focus();
-      }
-    });
-    const media = matchMedia('(max-width:68rem), (max-aspect-ratio:4/5)');
-    media.addEventListener('change', () => setMenu(false));
-    window.addEventListener('pageshow', () => { setMenu(false); updateHeader(); });
-  }
+    matchMedia('(max-width: 68rem), (max-aspect-ratio: 4/5)').addEventListener('change', () => setMenu(false));
+  })();
 </script>
+<style>
+  .site-header{position:fixed;z-index:50;top:0;right:0;left:0;border-bottom:1px solid transparent;background:transparent;font-family:var(--font-sans)}.site-header.is-ready{transition:background-color .5s ease,border-color .5s ease,box-shadow .5s ease}.site-header.is-scrolled,.site-header.is-menu-open{border-color:rgb(255 255 255/.13);background:var(--color-navy-950);box-shadow:0 5px 24px rgb(0 0 0/.2)}.header-inner{display:flex;min-height:4.6rem;align-items:center;justify-content:space-between;gap:1.5rem}.brand{display:flex;align-items:center;color:#fff;text-decoration:none}.brand img{display:block;width:min(12.8rem,42vw);height:auto}nav ul{display:flex;align-items:center;gap:1.25rem;margin:0;padding:0;list-style:none}nav a{position:relative;color:#fff;font-size:.86rem;font-weight:700;text-decoration:none}nav a::after{position:absolute;right:0;bottom:-.6rem;left:0;height:2px;transform:scaleX(0);background:var(--color-gold-300);content:'';transition:transform .2s ease}nav a:is([aria-current=page],.is-active-section),nav a:hover{color:var(--color-gold-300)}nav a:is([aria-current=page],.is-active-section)::after,nav a:hover::after{transform:scaleX(1)}.menu-button{display:none;padding:.5rem .75rem;border:1px solid rgb(255 255 255/.52);border-radius:.25rem;color:#fff;background:transparent;font:700 .9rem var(--font-sans)}
+  @media(max-width:68rem),(max-aspect-ratio:4/5){.menu-button{display:block}nav{display:none;position:absolute;top:100%;right:0;left:0;padding:.5rem 1rem 1rem;background:var(--color-navy-950);box-shadow:0 14px 24px rgb(0 0 0/.22)}nav.is-open{display:block;max-height:calc(100dvh - 4.6rem);overflow-y:auto}nav ul{align-items:stretch;flex-direction:column;gap:.25rem}nav a{display:block;padding:.65rem .45rem}nav a::after{right:auto;bottom:.2rem;left:.45rem;width:2.5rem}}
+  @media(prefers-reduced-motion:reduce){.site-header,nav a::after{transition-duration:.01ms}}
+</style>

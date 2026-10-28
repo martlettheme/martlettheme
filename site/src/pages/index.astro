@@ -2,6 +2,7 @@
 import { themes,heritage } from '../../../src/palettes.mjs';
 import { contrastRatio } from '../../../src/contrast.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageMasthead from '../components/PageMasthead.astro';
 import { version } from '../../../package.json';
 import ThemeSpecimen from '../components/ThemeSpecimen.astro';
 import AppDownloads from '../components/AppDownloads.astro';
@@ -13,10 +14,11 @@ const category=(key)=>key.startsWith('syntax-')?'syntax':key.startsWith('chart-'
 const downloads=[['CSS variables','Scoped Light and Dark themes','martlet.css'],['JSON tokens','The complete color specification','martlet.json'],['Light CSS','Light theme on its own','martlet-light.css'],['Dark CSS','Dark theme on its own','martlet-dark.css'],['VS Code Light','Starter color definition','martlet-light-vscode.json'],['VS Code Dark','Starter color definition','martlet-dark-vscode.json'],['Terminal Light JSON','Sixteen ANSI colors','martlet-light-terminal.json'],['Terminal Dark JSON','Sixteen ANSI colors','martlet-dark-terminal.json']];
 ---
 <BaseLayout>
-    <header class="book-intro">
-      <div class="book-title"><h1>Martlet<span>.</span></h1><p>Room for substantial work.</p></div>
-      <div class="book-description"><p>A design language for readable sequence, meaningful relationships, and continuity through the whole task. Build publishing, services, and applications with Martlet’s grammar, components, patterns, and agent tools.</p><div class="intro-links"><a href="/design-language/">Explore the language <span aria-hidden="true">→</span></a><a href="https://react.martletdesign.dev/">Build with React <span aria-hidden="true">↗</span></a><span>0.3 preview · MIT</span></div></div>
-    </header>
+    <PageMasthead title="Martlet" eyebrow="An opinionated design language" home>
+ <p>A design language for readable sequence, meaningful relationships, and continuity through the whole task. Build publishing, services, and applications with components, patterns, and agent tools.</p>
+ <p slot="metadata">Design language 0.3 preview · React · Astro · MCP · MIT</p>
+ <div slot="actions" class="masthead-actions"><a href="/design-language/">Explore the language →</a><a href="https://react.martletdesign.dev/">Build with React ↗</a></div>
+ </PageMasthead>
   <div class="specimen-book">
     <section id="preview" aria-label="Compare Martlet Light and Dark">
       <div class="specimen-toolbar"><p>One palette family. Two ways to work.</p><div class="view-switch" role="group" aria-label="Example type"><button type="button" data-example="interface" aria-pressed="true">Interface</button><button type="button" data-example="code" aria-pressed="false">Code</button><button type="button" data-example="terminal" aria-pressed="false">Terminal</button></div></div>

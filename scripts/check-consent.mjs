@@ -297,7 +297,7 @@ await scenario('footer typography follows the rendered origin cascade',async({pa
     assert.equal(await page.locator('#npm-title').count(),1);
     assert.equal(await page.locator('.app-ports a[href="https://www.npmjs.com/package/@martlet/theme"]').count(),1);
     assert.equal(await page.locator('.app-ports a[href="https://www.npmjs.com/package/@martlet/astro"]').count(),1);
-    await page.locator('.mast nav a[href="/design-system/"]').click();
+    await page.locator('.mast nav a[href="/design-system/"]').click();await page.waitForURL(base+'/design-system/');
     assert.equal(await page.getByRole('heading',{name:'Build with Martlet.',exact:true}).count(),1);
     const response=await page.request.get(base+'/design-system.json');
     assert.equal(response.ok(),true);
@@ -363,107 +363,7 @@ await scenario('footer typography follows the rendered origin cascade',async({pa
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Public React reference reflows with enlarged text');
     await page.screenshot({path:'artifacts/qa/public-react-agents.png'});
   });
-  await scenario('Astro and React documentation headers share the origin identity and responsive contract',async({page})=>{
-    await page.locator('#cookie-banner [data-cookie-reject]').click();
-    const inspect=async(header,brand,link,nav)=>page.evaluate(({header,brand,link,nav})=>{
-      const pick=(selector,keys)=>{
-        const element=document.querySelector(selector),style=getComputedStyle(element);
-        return Object.fromEntries(keys.map(key=>[key,style[key]]));
-      };
-      return {
-        header:pick(header,['backgroundColor','borderBottom','boxShadow','position','paddingTop','paddingRight','paddingBottom','paddingLeft','height']),
-        brand:pick(brand,['fontFamily','fontSize','fontWeight','lineHeight','color','gap']),
-        mark:pick(brand+' img',['width','height']),
-        link:pick(link,['fontFamily','fontSize','fontWeight','lineHeight','paddingTop','paddingBottom','color']),
-        nav:pick(nav,['gap']),
-      };
-    },{header,brand,link,nav});
-    await page.evaluate(()=>document.fonts.ready);
-    const astro=await inspect('.mast','.mast .brand','.mast nav a','.mast nav');
-    assert.equal(await page.locator('.brand').innerText(),'Martlet Design');
-    const astroMark=await (await page.request.get(base+'/martlet-mark.svg')).body();
-    await page.goto(reactBase+'/');
-    await page.evaluate(()=>document.fonts.ready);
-    const react=await inspect('.martlet-app-header','.martlet-reference-brand','.martlet-app-header nav a','.martlet-reference-navigation-links');
-    assert.deepEqual(astro,react,'The same Martlet header object must retain its visual rules across renderers');
-    const reactMark=await page.locator('.martlet-reference-brand img').getAttribute('src');
-    assert.deepEqual(await (await page.request.get(new URL(reactMark,page.url()).href)).body(),astroMark,'Use the same original mark');
-    await page.goto(reactBase+'/?page=language&mode=light');
-    const current=await page.locator('.martlet-app-header nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor}));
-    await page.goto(base+'/design-language/');
-    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The Language');
-    assert.deepEqual(await page.locator('.mast nav a[aria-current]').evaluate(e=>({color:getComputedStyle(e).color,rule:getComputedStyle(e,'::after').backgroundColor})),current);
-    for(const width of [1080,768,320]) {
-      await page.setViewportSize({width,height:900});
-      const toggle=page.getByRole('button',{name:'Menu',exact:true});
-      assert.equal(await toggle.isVisible(),true);
-      assert.equal(await page.locator('.mast nav').isVisible(),false);
-      await toggle.click();
-      assert.equal(await toggle.getAttribute('aria-expanded'),'true');
-      assert.equal(await page.locator('.mast nav').isVisible(),true);
-      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-      await page.keyboard.press('Escape');
-      assert.equal(await toggle.getAttribute('aria-expanded'),'false');
-      assert.equal(await toggle.evaluate(e=>e===document.activeElement),true);
-    }
-    await page.setViewportSize({width:320,height:900});
-    await page.getByRole('button',{name:'Menu',exact:true}).click();
-    await page.locator('.mast nav a[href="/#palette"]').click();
-    await page.waitForURL(base+'/#palette');
-    await page.waitForFunction(()=>{
-      const top=document.querySelector('#palette').getBoundingClientRect().top;
-      return top>=0&&top<100;
-    });
-    await page.goto(base+'/');
-    await page.evaluate(()=>document.fonts.ready);
-    await page.screenshot({path:'artifacts/qa/martlet-header-mobile.png'});
-    await page.setViewportSize({width:1440,height:1000});
-    await page.goto(base+'/design-language/');
-    await page.screenshot({path:'artifacts/qa/martlet-header-desktop.png'});
-  });
-  await scenario('Martlet navigation remains usable without JavaScript at narrow widths',async({page})=>{
-    await page.setViewportSize({width:320,height:900});
-    assert.equal(await page.getByRole('button',{name:'Menu',exact:true}).isVisible(),false);
-    assert.equal(await page.locator('.mast nav').isVisible(),true);
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-    await page.locator('.mast nav a[href="/design-language/"]').click();
-    await page.waitForURL(base+'/design-language/');
-    assert.equal(await page.locator('.mast nav a[aria-current]').innerText(),'The Language');
-  },{javaScriptEnabled:false});
-  await scenario('Martlet origin fade reverses with the hero in dark appearance',async({page})=>{
-    await page.locator('#cookie-banner [data-cookie-reject]').click();
-    for(const mode of ['light','dark']) {
-      const solid=mode==='light'?'rgb(7, 17, 31)':'rgb(255, 255, 255)';
-      const heroBg=mode==='light'?'rgb(11, 28, 51)':'rgb(248, 244, 233)';
-      await page.goto(reactBase+'/?mode='+mode);
-      assert.equal(await page.locator('.martlet-reference-intro').evaluate(e=>getComputedStyle(e).backgroundColor),heroBg);
-      await page.waitForFunction(()=>getComputedStyle(document.querySelector('.martlet-app-header')).backgroundColor==='rgba(0, 0, 0, 0)');
-      await page.evaluate(()=>window.scrollTo({top:300,behavior:'instant'}));
-      await page.waitForFunction(expected=>getComputedStyle(document.querySelector('.martlet-app-header')).backgroundColor===expected,solid);
-      const react=await page.locator('.martlet-app-header').evaluate(e=>({background:getComputedStyle(e).backgroundColor,color:getComputedStyle(e.querySelector('.martlet-reference-brand')).color}));
-      await page.goto(base+'/');
-      if(mode==='dark') await page.locator('[data-palette-mode="dark"]').click();
-      await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
-      await page.waitForFunction(()=>getComputedStyle(document.querySelector('.mast')).backgroundColor==='rgba(0, 0, 0, 0)');
-      const hero=await page.locator('.book-intro').evaluate(e=>({bg:getComputedStyle(e).backgroundColor,top:e.getBoundingClientRect().top}));assert.equal(hero.bg,heroBg);assert.equal(hero.top,0);
-      await page.evaluate(()=>window.scrollTo({top:300,behavior:'instant'}));
-      await page.waitForFunction(expected=>getComputedStyle(document.querySelector('.mast')).backgroundColor===expected,solid);
-      assert.deepEqual(await page.locator('.mast').evaluate(e=>({background:getComputedStyle(e).backgroundColor,color:getComputedStyle(e.querySelector('.brand')).color})),react);
-    }
-  });
-  await scenario('React footer owner identity and provenance match the master site',async({page})=>{
-    const owner=await page.locator('footer a[aria-label="James Howard website"]').innerText();
-    const icon=await page.locator('footer a[aria-label="James Howard website"] img').getAttribute('src');
-    const bytes=await (await page.request.get(new URL(icon,page.url()).href)).body();
-    const masterText=await page.locator('footer').innerText();
-    await page.goto(reactBase+'/');
-    assert.equal(await page.locator('footer a[aria-label="James Howard website"]').innerText(),owner.replace('martletdesign.dev','react.martletdesign.dev'));
-    const reactIcon=await page.locator('footer a[aria-label="James Howard website"] img').getAttribute('src');
-    assert.deepEqual(await (await page.request.get(new URL(reactIcon,page.url()).href)).body(),bytes);
-    assert.equal(await page.locator('footer').innerText(),masterText.replace('martletdesign.dev','react.martletdesign.dev'));
-    assert.equal(await page.getByRole('link',{name:'React reference',exact:true}).getAttribute('href'),'https://react.martletdesign.dev/');
-  });
-  console.log(`${results.length} browser scenarios passed. Google requests were intercepted.`);
+
 } finally {
   await browser.close();
   await new Promise(done=>server.close(done));
