@@ -5,4 +5,3 @@ const { items } = Astro.props as Props;
 <nav class="section-nav" aria-label="On this page">
   <div class="container"><ul>{items.map(item => <li><a href={item.href}>{item.label}</a></li>)}</ul></div>
 </nav>
-

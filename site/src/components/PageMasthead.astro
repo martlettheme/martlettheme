@@ -6,4 +6,3 @@ const { title, subtitle, image, compact=false, focal='center', eyebrow } = Astro
 <header class:list={['page-intro', {'page-intro--compact':compact}]} style={image ? `--hero-image:url('${image}');--hero-focal:${focal}` : undefined}>
   <div class="page-intro__shade"><div class="container page-intro__content">{eyebrow && <p class="eyebrow">{eyebrow}</p>}<h1>{title}</h1>{subtitle && <p>{subtitle}</p>}<slot /><div class="masthead-metadata"><slot name="metadata" /></div><div class="masthead-tags"><slot name="tags" /></div><slot name="actions" /></div></div>
 </header>
-

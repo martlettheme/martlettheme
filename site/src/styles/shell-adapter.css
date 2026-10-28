@@ -50,3 +50,4 @@ body .terminal-download h4 { font-size:1.75rem; margin:0 0 1rem; }
 /* The canvas follows page appearance; each nested preview retains its own palette. */
 body .specimen-book { background:var(--martlet-bg); color:var(--martlet-text); }
 html[data-appearance="dark"] .origin-story { color:var(--martlet-text); }
+html[data-appearance="dark"] :is(.content,.design-reference) blockquote { color:var(--martlet-muted); }
